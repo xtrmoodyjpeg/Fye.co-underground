@@ -1,5 +1,5 @@
 import {Suspense} from 'react';
-import {Await, NavLink} from 'react-router';
+import {Await, Link, NavLink} from 'react-router';
 import type {FooterQuery, HeaderQuery} from 'storefrontapi.generated';
 
 interface FooterProps {
@@ -8,27 +8,100 @@ interface FooterProps {
   publicStoreDomain: string;
 }
 
+const FOOTER_COLUMNS = [
+  {
+    heading: 'Collections',
+    links: [
+      {label: 'Sketch Series', to: '/collections/all'},
+      {label: 'Heavyweight', to: '/collections/all'},
+      {label: 'After Dark', to: '/collections/all'},
+      {label: 'Essentials', to: '/collections/all'},
+    ],
+  },
+  {
+    heading: 'Shop',
+    links: [
+      {label: 'New Arrivals', to: '/collections/all'},
+      {label: 'Hoodies', to: '/collections/all'},
+      {label: 'Tees', to: '/collections/all'},
+      {label: 'Bottoms', to: '/collections/all'},
+    ],
+  },
+  {
+    heading: 'Story',
+    links: [
+      {label: 'Our Vision', to: '/story'},
+      {label: 'The People', to: '/story'},
+      {label: 'Journal', to: '/blogs/news'},
+      {label: 'Lookbook', to: '/lookbook'},
+    ],
+  },
+];
+
+const FOLLOW_LINKS = ['Instagram', 'TikTok', 'YouTube', 'Newsletter'];
+
 export function Footer({
   footer: footerPromise,
   header,
   publicStoreDomain,
 }: FooterProps) {
   return (
-    <Suspense>
-      <Await resolve={footerPromise}>
-        {(footer) => (
-          <footer className="footer">
-            {footer?.menu && header.shop.primaryDomain?.url && (
-              <FooterMenu
-                menu={footer.menu}
-                primaryDomainUrl={header.shop.primaryDomain.url}
-                publicStoreDomain={publicStoreDomain}
-              />
-            )}
-          </footer>
-        )}
-      </Await>
-    </Suspense>
+    <footer className="bg-black px-6 pt-16 text-paper sm:px-10">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
+          <div className="flex aspect-[4/3] flex-col items-center justify-center rounded-2xl bg-steel/60 p-6 text-center font-display text-2xl leading-none sm:aspect-auto sm:h-full">
+            Good ideas
+            <br />
+            late nights
+          </div>
+          {FOOTER_COLUMNS.map((column) => (
+            <div key={column.heading}>
+              <h3 className="border-b-2 border-signal pb-2 font-mono text-xs uppercase tracking-widest">
+                {column.heading}
+              </h3>
+              <ul className="mt-4 space-y-2 font-mono text-xs uppercase tracking-widest text-paper/60">
+                {column.links.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className="hover:text-paper">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <div>
+            <h3 className="border-b-2 border-signal pb-2 font-mono text-xs uppercase tracking-widest">
+              Follow
+            </h3>
+            <ul className="mt-4 space-y-2 font-mono text-xs uppercase tracking-widest text-paper/60">
+              {FOLLOW_LINKS.map((link) => (
+                <li key={link}>{link}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <p className="mt-16 select-none border-t border-paper/10 py-6 text-center font-display text-[18vw] leading-none sm:text-[9vw]">
+          FYE.CO
+        </p>
+
+        <Suspense>
+          <Await resolve={footerPromise}>
+            {(footer) =>
+              footer?.menu &&
+              header.shop.primaryDomain?.url && (
+                <FooterMenu
+                  menu={footer.menu}
+                  primaryDomainUrl={header.shop.primaryDomain.url}
+                  publicStoreDomain={publicStoreDomain}
+                />
+              )
+            }
+          </Await>
+        </Suspense>
+      </div>
+    </footer>
   );
 }
 
@@ -42,7 +115,10 @@ function FooterMenu({
   publicStoreDomain: string;
 }) {
   return (
-    <nav className="footer-menu" role="navigation">
+    <nav
+      className="flex flex-wrap items-center justify-center gap-6 border-t border-paper/10 py-6 font-mono text-xs uppercase tracking-widest text-paper/60"
+      role="navigation"
+    >
       {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
         if (!item.url) return null;
         // if the url is internal, we strip the domain
@@ -54,15 +130,21 @@ function FooterMenu({
             : item.url;
         const isExternal = !url.startsWith('/');
         return isExternal ? (
-          <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
+          <a
+            className="hover:text-paper"
+            href={url}
+            key={item.id}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             {item.title}
           </a>
         ) : (
           <NavLink
+            className="hover:text-paper"
             end
             key={item.id}
             prefetch="intent"
-            style={activeLinkStyle}
             to={url}
           >
             {item.title}
@@ -114,16 +196,3 @@ const FALLBACK_FOOTER_MENU = {
     },
   ],
 };
-
-function activeLinkStyle({
-  isActive,
-  isPending,
-}: {
-  isActive: boolean;
-  isPending: boolean;
-}) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'white',
-  };
-}

@@ -5,104 +5,99 @@ import {
   useAnalytics,
   useOptimisticCart,
 } from '@shopify/hydrogen';
-import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
+import type {CartApiQueryFragment} from 'storefrontapi.generated';
 import {useAside} from '~/components/Aside';
 
 interface HeaderProps {
-  header: HeaderQuery;
   cart: Promise<CartApiQueryFragment | null>;
   isLoggedIn: Promise<boolean>;
-  publicStoreDomain: string;
 }
 
-type Viewport = 'desktop' | 'mobile';
+const NAV_LINKS = [
+  {label: 'Home', to: '/'},
+  {label: 'Shop', to: '/collections/all'},
+  {label: 'Story', to: '/story'},
+  {label: 'Lookbook', to: '/lookbook'},
+  {label: 'Journal', to: '/blogs/news'},
+];
 
-export function Header({
-  header,
-  isLoggedIn,
-  cart,
-  publicStoreDomain,
-}: HeaderProps) {
-  const {shop, menu} = header;
+export function Header({isLoggedIn, cart}: HeaderProps) {
   return (
-    <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-        publicStoreDomain={publicStoreDomain}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-    </header>
+    <div className="sticky top-0 z-40 bg-black text-paper">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-2 font-mono text-[10px] uppercase tracking-widest text-paper/60 sm:px-10">
+        <span>Lookbook / Drops / Journal</span>
+        <span className="hidden sm:inline">
+          Made for the ones who see different
+        </span>
+        <span aria-hidden="true">◎ ♪ ▶</span>
+      </div>
+      <header className="mx-auto flex max-w-[1400px] items-center justify-between border-t border-paper/10 px-6 py-4 sm:px-10">
+        <NavLink
+          prefetch="intent"
+          to="/"
+          end
+          className="font-display text-xl tracking-wide text-paper"
+        >
+          FYE.CO
+        </NavLink>
+        <nav
+          className="hidden items-center gap-8 font-mono text-xs uppercase tracking-widest sm:flex"
+          aria-label="Primary"
+        >
+          {NAV_LINKS.map((link) => (
+            <NavLink
+              key={link.label}
+              to={link.to}
+              end={link.to === '/'}
+              className="hover:text-signal"
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      </header>
+    </div>
   );
 }
 
-export function HeaderMenu({
-  menu,
-  primaryDomainUrl,
-  viewport,
-  publicStoreDomain,
-}: {
-  menu: HeaderProps['header']['menu'];
-  primaryDomainUrl: HeaderProps['header']['shop']['primaryDomain']['url'];
-  viewport: Viewport;
-  publicStoreDomain: HeaderProps['publicStoreDomain'];
-}) {
-  const className = `header-menu-${viewport}`;
+export function HeaderMenu() {
   const {close} = useAside();
 
   return (
-    <nav className={className} role="navigation">
-      {viewport === 'mobile' && (
+    <nav className="flex flex-col gap-4 font-mono text-sm uppercase tracking-widest text-ink">
+      {NAV_LINKS.map((link) => (
         <NavLink
-          end
+          key={link.label}
+          to={link.to}
+          end={link.to === '/'}
           onClick={close}
           prefetch="intent"
           style={activeLinkStyle}
-          to="/"
         >
-          Home
+          {link.label}
         </NavLink>
-      )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
-        if (!item.url) return null;
-
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        return (
-          <NavLink
-            className="header-menu-item"
-            end
-            key={item.id}
-            onClick={close}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
+      ))}
+      <NavLink
+        to="/account"
+        onClick={close}
+        prefetch="intent"
+        style={activeLinkStyle}
+      >
+        Account
+      </NavLink>
     </nav>
   );
 }
 
-function HeaderCtas({
-  isLoggedIn,
-  cart,
-}: Pick<HeaderProps, 'isLoggedIn' | 'cart'>) {
+function HeaderCtas({isLoggedIn, cart}: Pick<HeaderProps, 'isLoggedIn' | 'cart'>) {
   return (
-    <nav className="header-ctas" role="navigation">
-      <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
+    <div className="flex items-center gap-4 text-paper">
+      <NavLink
+        prefetch="intent"
+        to="/account"
+        className="hidden font-mono text-xs uppercase tracking-widest hover:text-signal sm:inline"
+      >
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">
             {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
@@ -111,7 +106,8 @@ function HeaderCtas({
       </NavLink>
       <SearchToggle />
       <CartToggle cart={cart} />
-    </nav>
+      <HeaderMenuMobileToggle />
+    </div>
   );
 }
 
@@ -119,10 +115,12 @@ function HeaderMenuMobileToggle() {
   const {open} = useAside();
   return (
     <button
-      className="header-menu-mobile-toggle reset"
+      type="button"
+      className="reset text-lg sm:hidden"
       onClick={() => open('mobile')}
+      aria-label="Open menu"
     >
-      <h3>☰</h3>
+      ☰
     </button>
   );
 }
@@ -130,8 +128,13 @@ function HeaderMenuMobileToggle() {
 function SearchToggle() {
   const {open} = useAside();
   return (
-    <button className="reset" onClick={() => open('search')}>
-      Search
+    <button
+      type="button"
+      className="reset text-lg"
+      onClick={() => open('search')}
+      aria-label="Search"
+    >
+      ⌕
     </button>
   );
 }
@@ -143,6 +146,7 @@ function CartBadge({count}: {count: number}) {
   return (
     <a
       href="/cart"
+      className="font-mono text-xs uppercase tracking-widest hover:text-signal"
       onClick={(e) => {
         e.preventDefault();
         open('cart');
@@ -154,7 +158,7 @@ function CartBadge({count}: {count: number}) {
         } as CartViewPayload);
       }}
     >
-      Cart <span aria-label={`(items: ${count})`}>{count}</span>
+      Cart {String(count).padStart(2, '0')}
     </a>
   );
 }
@@ -174,48 +178,6 @@ function CartBanner() {
   const cart = useOptimisticCart(originalCart);
   return <CartBadge count={cart?.totalQuantity ?? 0} />;
 }
-
-const FALLBACK_HEADER_MENU = {
-  id: 'gid://shopify/Menu/199655587896',
-  items: [
-    {
-      id: 'gid://shopify/MenuItem/461609500728',
-      resourceId: null,
-      tags: [],
-      title: 'Collections',
-      type: 'HTTP',
-      url: '/collections',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609533496',
-      resourceId: null,
-      tags: [],
-      title: 'Blog',
-      type: 'HTTP',
-      url: '/blogs/journal',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609566264',
-      resourceId: null,
-      tags: [],
-      title: 'Policies',
-      type: 'HTTP',
-      url: '/policies',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609599032',
-      resourceId: 'gid://shopify/Page/92591030328',
-      tags: [],
-      title: 'About',
-      type: 'PAGE',
-      url: '/pages/about',
-      items: [],
-    },
-  ],
-};
 
 function activeLinkStyle({
   isActive,
