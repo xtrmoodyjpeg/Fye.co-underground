@@ -4,20 +4,20 @@
     "name": "Chrome Gator Windbreaker Jacket",
     "category": "Outerwear / Jacket",
     "colorway": "Red",
-    "sizes": "Small–XXL (order a size up) — athletic fit, true to size",
+    "sizes": "Small\u2013XXL (order a size up) \u2014 athletic fit, true to size",
     "description": "Glossy red nylon windbreaker with a large chrome gator mascot inside a bold \"FC\" logo mark. Full-zip hood; part of the Chrome Gator Windbreaker set with the matching track pants.",
     "price": null,
-    "image": "/products/fc-dino-track-jacket.png"
+    "image": "/products/fc-dino-track-jacket.webp"
   },
   {
     "handle": "fc-dino-track-pants",
     "name": "Chrome Gator Windbreaker Pants",
     "category": "Bottoms / Pants",
     "colorway": "Red",
-    "sizes": "Small–XXL (order a size up) — athletic fit, true to size",
+    "sizes": "Small\u2013XXL (order a size up) \u2014 athletic fit, true to size",
     "description": "Glossy red nylon track pants with an elastic drawstring waist and a chrome gator/\"FC\" logo on the left thigh. Matches the Chrome Gator Windbreaker Jacket as a set.",
     "price": null,
-    "image": "/products/fc-dino-track-pants.png"
+    "image": "/products/fc-dino-track-pants.webp"
   },
   {
     "handle": "fyeco-crew-socks-red",
@@ -27,7 +27,7 @@
     "sizes": "One size fits all",
     "description": "White ribbed crew socks with the red \"fye.co\" logo knit into the cuff and toe.",
     "price": null,
-    "image": "/products/fyeco-crew-socks-red.jpg"
+    "image": "/products/fyeco-crew-socks-red.webp"
   },
   {
     "handle": "fyeco-crew-socks-black",
@@ -37,36 +37,36 @@
     "sizes": "One size fits all",
     "description": "White ribbed crew socks with the black \"fye.co\" logo knit into the cuff and toe.",
     "price": null,
-    "image": "/products/fyeco-crew-socks-black.jpg"
+    "image": "/products/fyeco-crew-socks-black.webp"
   },
   {
     "handle": "i-love-fc-tee",
-    "name": "I ❤ FYE.CO Tee",
+    "name": "I \u2764 FYE.CO Tee",
     "category": "Tops / T-Shirt",
     "colorway": "Black",
-    "sizes": "Small–XXL",
-    "description": "100% premium heavy-duty cotton tee. \"I ❤ FC\" graphic in gothic type with a chrome gator mascot holding a rose.",
+    "sizes": "Small\u2013XXL",
+    "description": "100% premium heavy-duty cotton tee. \"I \u2764 FC\" graphic in gothic type with a chrome gator mascot holding a rose.",
     "price": null,
-    "image": "/products/i-love-fc-tee.png"
+    "image": "/products/i-love-fc-tee.webp"
   },
   {
     "handle": "pixel-flamingo-long-sleeve",
     "name": "Flamingo Skater Long Sleeve",
     "category": "Tops / Long Sleeve",
     "colorway": "Cream",
-    "sizes": "Small–XXL, true to size fit. Model is 6'0\" wearing size Large.",
-    "description": "100% premium cotton (heavy feel) long sleeve with a layered thermal-cuff look — waffle-knit 100% cotton sleeves stitched at the shoulders. Pixel-art flamingo holding a flower on the chest.",
+    "sizes": "Small\u2013XXL, true to size fit. Model is 6'0\" wearing size Large.",
+    "description": "100% premium cotton (heavy feel) long sleeve with a layered thermal-cuff look \u2014 waffle-knit 100% cotton sleeves stitched at the shoulders. Pixel-art flamingo holding a flower on the chest.",
     "price": null,
-    "image": "/products/pixel-flamingo-long-sleeve.png"
+    "image": "/products/pixel-flamingo-long-sleeve.webp"
   },
   {
     "handle": "pixel-flamingo-swim-shorts",
     "name": "Pixel Flamingo Swim Shorts",
     "category": "Bottoms / Swimwear",
     "colorway": "Light Blue",
-    "sizes": "Small–XXL",
+    "sizes": "Small\u2013XXL",
     "description": "Light blue swim shorts with an elastic drawstring waist and side pockets; all-over pixel-art flamingo and palm tree print.",
     "price": null,
-    "image": "/products/pixel-flamingo-swim-shorts.png"
+    "image": "/products/pixel-flamingo-swim-shorts.webp"
   }
 ]
