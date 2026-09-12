@@ -136,6 +136,16 @@ export default function AdminProductsRoute() {
               />
             </label>
 
+            <label className="col-span-full flex flex-col gap-1 font-mono text-xs uppercase tracking-widest">
+              Sizes
+              <input
+                name="sizes"
+                defaultValue={editing?.sizes ?? ''}
+                placeholder="e.g. Small–XXL, true to size"
+                className="border border-ink/30 bg-paper px-3 py-2 text-sm normal-case tracking-normal"
+              />
+            </label>
+
             <label className="flex flex-col gap-1 font-mono text-xs uppercase tracking-widest">
               Price (USD, blank = TBD)
               <input

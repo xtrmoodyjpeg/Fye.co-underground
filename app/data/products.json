@@ -1,19 +1,21 @@
 [
   {
     "handle": "fc-dino-track-jacket",
-    "name": "FC Dino Track Jacket",
+    "name": "Chrome Gator Windbreaker Jacket",
     "category": "Outerwear / Jacket",
     "colorway": "Red",
-    "description": "Nylon full-zip hooded track jacket with large front graphic: chrome dino/gator mascot inside a bold \"FC\" logo mark.",
+    "sizes": "Small–XXL (order a size up) — athletic fit, true to size",
+    "description": "Glossy red nylon windbreaker with a large chrome gator mascot inside a bold \"FC\" logo mark. Full-zip hood; part of the Chrome Gator Windbreaker set with the matching track pants.",
     "price": null,
     "image": "/products/fc-dino-track-jacket.png"
   },
   {
     "handle": "fc-dino-track-pants",
-    "name": "FC Dino Track Pants",
+    "name": "Chrome Gator Windbreaker Pants",
     "category": "Bottoms / Pants",
     "colorway": "Red",
-    "description": "Nylon elastic-waist track pants with drawstring; small dino/\"FC\" logo on left thigh. Matches the FC Dino Track Jacket as a set.",
+    "sizes": "Small–XXL (order a size up) — athletic fit, true to size",
+    "description": "Glossy red nylon track pants with an elastic drawstring waist and a chrome gator/\"FC\" logo on the left thigh. Matches the Chrome Gator Windbreaker Jacket as a set.",
     "price": null,
     "image": "/products/fc-dino-track-pants.png"
   },
@@ -22,7 +24,8 @@
     "name": "FYE.CO Crew Socks (Red Logo)",
     "category": "Accessories / Socks",
     "colorway": "White / Red",
-    "description": "White ribbed crew socks with red \"fye.co\" logo knit into the cuff and toe.",
+    "sizes": "One size fits all",
+    "description": "White ribbed crew socks with the red \"fye.co\" logo knit into the cuff and toe.",
     "price": null,
     "image": "/products/fyeco-crew-socks-red.jpg"
   },
@@ -31,25 +34,28 @@
     "name": "FYE.CO Crew Socks (Black Logo)",
     "category": "Accessories / Socks",
     "colorway": "White / Black",
-    "description": "White ribbed crew socks with black \"fye.co\" logo knit into the cuff and toe.",
+    "sizes": "One size fits all",
+    "description": "White ribbed crew socks with the black \"fye.co\" logo knit into the cuff and toe.",
     "price": null,
     "image": "/products/fyeco-crew-socks-black.jpg"
   },
   {
     "handle": "i-love-fc-tee",
-    "name": "I Love FC Tee",
+    "name": "I ❤ FYE.CO Tee",
     "category": "Tops / T-Shirt",
     "colorway": "Black",
-    "description": "Black tee, \"I [heart] FC\" graphic in gothic type with chrome dino mascot holding a rose.",
+    "sizes": "Small–XXL",
+    "description": "100% premium heavy-duty cotton tee. \"I ❤ FC\" graphic in gothic type with a chrome gator mascot holding a rose.",
     "price": null,
     "image": "/products/i-love-fc-tee.png"
   },
   {
     "handle": "pixel-flamingo-long-sleeve",
-    "name": "Pixel Flamingo Long Sleeve",
+    "name": "Flamingo Skater Long Sleeve",
     "category": "Tops / Long Sleeve",
     "colorway": "Cream",
-    "description": "Cream long sleeve tee with layered thermal-cuff look; pixel-art flamingo holding a flower on chest.",
+    "sizes": "Small–XXL, true to size fit. Model is 6'0\" wearing size Large.",
+    "description": "100% premium cotton (heavy feel) long sleeve with a layered thermal-cuff look — waffle-knit 100% cotton sleeves stitched at the shoulders. Pixel-art flamingo holding a flower on the chest.",
     "price": null,
     "image": "/products/pixel-flamingo-long-sleeve.png"
   },
@@ -58,7 +64,8 @@
     "name": "Pixel Flamingo Swim Shorts",
     "category": "Bottoms / Swimwear",
     "colorway": "Light Blue",
-    "description": "Light blue swim shorts, elastic drawstring waist, side pockets; all-over pixel-art flamingo and palm tree print.",
+    "sizes": "Small–XXL",
+    "description": "Light blue swim shorts with an elastic drawstring waist and side pockets; all-over pixel-art flamingo and palm tree print.",
     "price": null,
     "image": "/products/pixel-flamingo-swim-shorts.png"
   }

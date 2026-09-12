@@ -115,6 +115,8 @@ const server = createServer(async (req, res) => {
       const name = String(formData.get('name') || '').trim();
       const category = String(formData.get('category') || '').trim();
       const colorway = String(formData.get('colorway') || '').trim();
+      const sizesRaw = String(formData.get('sizes') || '').trim();
+      const sizes = sizesRaw || null;
       const description = String(formData.get('description') || '').trim();
       const priceRaw = String(formData.get('price') || '').trim();
       const price = priceRaw ? Number(priceRaw) : null;
@@ -132,6 +134,7 @@ const server = createServer(async (req, res) => {
           name,
           category,
           colorway,
+          sizes,
           description,
           price,
           image: uploadedImage || existing.image,
@@ -149,6 +152,7 @@ const server = createServer(async (req, res) => {
         name,
         category,
         colorway,
+        sizes,
         description,
         price,
         image: uploadedImage || '/products/placeholder.png',

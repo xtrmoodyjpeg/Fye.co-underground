@@ -10,6 +10,7 @@ export interface Product {
   name: string;
   category: string;
   colorway: string;
+  sizes: string | null;
   description: string;
   price: number | null;
   image: string;
