@@ -21,10 +21,10 @@ const FOOTER_COLUMNS = [
   {
     heading: 'Shop',
     links: [
-      {label: 'New Arrivals', to: '/collections/all'},
-      {label: 'Hoodies', to: '/collections/all'},
-      {label: 'Tees', to: '/collections/all'},
-      {label: 'Bottoms', to: '/collections/all'},
+      {label: 'All products', to: '/shop'},
+      {label: 'Outerwear', to: '/shop'},
+      {label: 'Tops', to: '/shop'},
+      {label: 'Bottoms', to: '/shop'},
     ],
   },
   {
@@ -100,6 +100,15 @@ export function Footer({
             }
           </Await>
         </Suspense>
+
+        <div className="border-t border-paper/10 py-4 text-center">
+          <Link
+            to="/admin/products"
+            className="font-mono text-[10px] uppercase tracking-widest text-paper/30 hover:text-paper/60"
+          >
+            Admin
+          </Link>
+        </div>
       </div>
     </footer>
   );

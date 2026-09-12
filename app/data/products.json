@@ -1,0 +1,65 @@
+[
+  {
+    "handle": "fc-dino-track-jacket",
+    "name": "FC Dino Track Jacket",
+    "category": "Outerwear / Jacket",
+    "colorway": "Red",
+    "description": "Nylon full-zip hooded track jacket with large front graphic: chrome dino/gator mascot inside a bold \"FC\" logo mark.",
+    "price": null,
+    "image": "/products/fc-dino-track-jacket.png"
+  },
+  {
+    "handle": "fc-dino-track-pants",
+    "name": "FC Dino Track Pants",
+    "category": "Bottoms / Pants",
+    "colorway": "Red",
+    "description": "Nylon elastic-waist track pants with drawstring; small dino/\"FC\" logo on left thigh. Matches the FC Dino Track Jacket as a set.",
+    "price": null,
+    "image": "/products/fc-dino-track-pants.png"
+  },
+  {
+    "handle": "fyeco-crew-socks-red",
+    "name": "FYE.CO Crew Socks (Red Logo)",
+    "category": "Accessories / Socks",
+    "colorway": "White / Red",
+    "description": "White ribbed crew socks with red \"fye.co\" logo knit into the cuff and toe.",
+    "price": null,
+    "image": "/products/fyeco-crew-socks-red.jpg"
+  },
+  {
+    "handle": "fyeco-crew-socks-black",
+    "name": "FYE.CO Crew Socks (Black Logo)",
+    "category": "Accessories / Socks",
+    "colorway": "White / Black",
+    "description": "White ribbed crew socks with black \"fye.co\" logo knit into the cuff and toe.",
+    "price": null,
+    "image": "/products/fyeco-crew-socks-black.jpg"
+  },
+  {
+    "handle": "i-love-fc-tee",
+    "name": "I Love FC Tee",
+    "category": "Tops / T-Shirt",
+    "colorway": "Black",
+    "description": "Black tee, \"I [heart] FC\" graphic in gothic type with chrome dino mascot holding a rose.",
+    "price": null,
+    "image": "/products/i-love-fc-tee.png"
+  },
+  {
+    "handle": "pixel-flamingo-long-sleeve",
+    "name": "Pixel Flamingo Long Sleeve",
+    "category": "Tops / Long Sleeve",
+    "colorway": "Cream",
+    "description": "Cream long sleeve tee with layered thermal-cuff look; pixel-art flamingo holding a flower on chest.",
+    "price": null,
+    "image": "/products/pixel-flamingo-long-sleeve.png"
+  },
+  {
+    "handle": "pixel-flamingo-swim-shorts",
+    "name": "Pixel Flamingo Swim Shorts",
+    "category": "Bottoms / Swimwear",
+    "colorway": "Light Blue",
+    "description": "Light blue swim shorts, elastic drawstring waist, side pockets; all-over pixel-art flamingo and palm tree print.",
+    "price": null,
+    "image": "/products/pixel-flamingo-swim-shorts.png"
+  }
+]

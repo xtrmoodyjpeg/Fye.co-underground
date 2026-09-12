@@ -15,7 +15,7 @@ interface HeaderProps {
 
 const NAV_LINKS = [
   {label: 'Home', to: '/'},
-  {label: 'Shop', to: '/collections/all'},
+  {label: 'Shop', to: '/shop'},
   {label: 'Story', to: '/story'},
   {label: 'Lookbook', to: '/lookbook'},
   {label: 'Journal', to: '/blogs/news'},
