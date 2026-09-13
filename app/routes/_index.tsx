@@ -2,17 +2,23 @@ import {useLoaderData} from 'react-router';
 import type {Route} from './+types/_index';
 import {Home} from '~/components/home/Home';
 import {MockShopNotice} from '~/components/MockShopNotice';
-import {getProducts} from '~/lib/products.server';
+import {PRODUCT_CARD_FRAGMENT} from '~/lib/fragments';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | For Your Eyes'}];
 };
 
 export async function loader({context}: Route.LoaderArgs) {
-  const products = await getProducts();
+  const {storefront} = context;
+  const [{products}] = await Promise.all([
+    storefront.query(HOME_PRODUCTS_QUERY, {
+      variables: {first: 8},
+    }),
+  ]);
+
   return {
     isShopLinked: Boolean(context.env.PUBLIC_STORE_DOMAIN),
-    products,
+    products: products.nodes,
   };
 }
 
@@ -29,3 +35,18 @@ export default function Homepage() {
     </>
   );
 }
+
+const HOME_PRODUCTS_QUERY = `#graphql
+  query HomeProducts(
+    $country: CountryCode
+    $language: LanguageCode
+    $first: Int
+  ) @inContext(country: $country, language: $language) {
+    products(first: $first, sortKey: UPDATED_AT, reverse: true) {
+      nodes {
+        ...ProductCardItem
+      }
+    }
+  }
+  ${PRODUCT_CARD_FRAGMENT}
+` as const;

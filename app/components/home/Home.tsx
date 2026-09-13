@@ -2,9 +2,9 @@ import {Hero} from './Hero';
 import {Shop} from './Shop';
 import {SeenSection} from './SeenSection';
 import {Collections} from './Collections';
-import type {Product} from '~/lib/products.server';
+import type {ProductCardItemFragment} from 'storefrontapi.generated';
 
-export function Home({products}: {products: Product[]}) {
+export function Home({products}: {products: ProductCardItemFragment[]}) {
   return (
     <>
       <Hero />

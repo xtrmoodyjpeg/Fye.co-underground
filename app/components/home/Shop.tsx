@@ -1,7 +1,10 @@
 import {Link} from 'react-router';
-import type {Product} from '~/lib/products.server';
+import {Image, Money} from '@shopify/hydrogen';
+import type {ProductCardItemFragment} from 'storefrontapi.generated';
 
-export function Shop({products}: {products: Product[]}) {
+export function Shop({products}: {products: ProductCardItemFragment[]}) {
+  if (!products.length) return null;
+
   return (
     <section className="bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1400px]">
@@ -19,24 +22,26 @@ export function Shop({products}: {products: Product[]}) {
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
             <Link
-              key={product.handle}
+              key={product.id}
               to={`/shop/${product.handle}`}
               prefetch="intent"
               className="block"
             >
               <div className="aspect-square w-full overflow-hidden rounded-2xl bg-paper">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-full w-full object-contain"
-                  loading="lazy"
-                />
+                {product.featuredImage && (
+                  <Image
+                    data={product.featuredImage}
+                    aspectRatio="1/1"
+                    sizes="(min-width: 45em) 25vw, 50vw"
+                    className="h-full w-full object-contain"
+                  />
+                )}
               </div>
               <h3 className="mt-3 font-mono text-xs uppercase tracking-widest">
-                {product.name}
+                {product.title}
               </h3>
               <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-paper/60">
-                {product.price ? `$${product.price}` : 'Price TBD'}
+                <Money data={product.priceRange.minVariantPrice} />
               </p>
             </Link>
           ))}

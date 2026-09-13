@@ -228,6 +228,27 @@ export const HEADER_QUERY = `#graphql
   ${MENU_FRAGMENT}
 ` as const;
 
+export const PRODUCT_CARD_FRAGMENT = `#graphql
+  fragment ProductCardItem on Product {
+    id
+    handle
+    title
+    featuredImage {
+      id
+      altText
+      url
+      width
+      height
+    }
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+  }
+` as const;
+
 export const FOOTER_QUERY = `#graphql
   query Footer(
     $country: CountryCode
