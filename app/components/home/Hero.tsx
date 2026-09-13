@@ -1,11 +1,5 @@
 import {Link} from 'react-router';
 
-const MODEL_PORTRAITS = [
-  {id: 'portrait-1', label: 'Model portrait'},
-  {id: 'portrait-2', label: 'Model portrait'},
-  {id: 'portrait-3', label: 'Model portrait'},
-];
-
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-black px-6 pb-16 pt-16 text-paper sm:px-10">
@@ -27,7 +21,7 @@ export function Hero() {
             For your eyes
           </p>
           <Link
-            to="/collections/all"
+            to="/shop"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 font-mono text-xs uppercase tracking-widest text-paper transition-opacity hover:opacity-90"
           >
             Shop drop 02
@@ -35,15 +29,26 @@ export function Hero() {
           </Link>
         </div>
 
-        <div className="relative z-10 mt-12 grid grid-cols-3 gap-4 sm:mx-auto sm:max-w-xl">
-          {MODEL_PORTRAITS.map((portrait) => (
-            <div
-              key={portrait.id}
-              className="flex aspect-[3/4] items-center justify-center rounded-2xl bg-steel/60 text-center font-mono text-[10px] uppercase tracking-widest text-paper/70"
-            >
-              {portrait.label}
+        <div className="relative z-10 mt-12 flex justify-center">
+          <div className="w-full max-w-[280px]">
+            <div className="aspect-[9/16] overflow-hidden rounded-2xl ring-1 ring-paper/10">
+              <video
+                className="h-full w-full object-cover"
+                poster="/videos/hero-loop-poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+              >
+                <source src="/videos/hero-loop.webm" type="video/webm" />
+                <source src="/videos/hero-loop.mp4" type="video/mp4" />
+              </video>
             </div>
-          ))}
+            <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-widest text-paper/50">
+              Behind the drop
+            </p>
+          </div>
         </div>
 
         <p className="relative z-10 mt-10 max-w-sm font-mono text-[11px] uppercase leading-relaxed tracking-widest text-paper/60">
