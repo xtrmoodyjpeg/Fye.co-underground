@@ -24,3 +24,10 @@
   --color-steel-light: #8c8c8c;
   --color-signal: #ff2b2b;
 }
+
+/* Subtle dark cement texture layered onto every bg-black surface site-wide. */
+.bg-black {
+  background-image: url('/textures/cement.webp');
+  background-repeat: repeat;
+  background-size: 512px 512px;
+}
