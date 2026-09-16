@@ -9,6 +9,7 @@ import {
   Scripts,
   ScrollRestoration,
   useRouteLoaderData,
+  useLocation,
 } from 'react-router';
 import type {Route} from './+types/root';
 import favicon from '~/assets/favicon.svg';
@@ -73,7 +74,7 @@ export function links() {
     },
     {
       rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;900&display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;900&display=swap',
     },
     {rel: 'icon', type: 'image/svg+xml', href: favicon},
   ];
@@ -178,8 +179,14 @@ export function Layout({children}: {children?: React.ReactNode}) {
   );
 }
 
+// Routes with their own fully custom header/footer opt out of the global
+// FYE.CO site chrome instead of nesting a second header/footer inside theirs.
+const FULL_BLEED_ROUTES = ['/exotics'];
+
 export default function App() {
   const data = useRouteLoaderData<RootLoader>('root');
+  const location = useLocation();
+  const isFullBleedRoute = FULL_BLEED_ROUTES.includes(location.pathname);
 
   if (!data) {
     return <Outlet />;
@@ -191,9 +198,13 @@ export default function App() {
       shop={data.shop}
       consent={data.consent}
     >
-      <PageLayout {...data}>
+      {isFullBleedRoute ? (
         <Outlet />
-      </PageLayout>
+      ) : (
+        <PageLayout {...data}>
+          <Outlet />
+        </PageLayout>
+      )}
     </Analytics.Provider>
   );
 }

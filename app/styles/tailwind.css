@@ -23,6 +23,18 @@
   --color-steel: #4a4a4a;
   --color-steel-light: #8c8c8c;
   --color-signal: #ff2b2b;
+
+  /* FYE.EXOTICS sub-brand -- deliberately its own system, not the FYE.CO
+     red/black identity above. Kept as distinct tokens (not aliases) so the
+     two never bleed into each other by accident. */
+  --font-exotic-headline: 'Anton', var(--font-sans);
+  --font-exotic-serif: Georgia, 'Times New Roman', serif;
+
+  --color-void: #050505;
+  --color-acid: #c9ff00;
+  --color-bone: #f2f2ee;
+  --color-fog: #777777;
+  --color-charcoal: #171717;
 }
 
 /* Subtle dark cement texture layered onto every bg-black surface site-wide. */
@@ -30,4 +42,43 @@
   background-image: url('/textures/cement.webp');
   background-repeat: repeat;
   background-size: 512px 512px;
+}
+
+@keyframes exotics-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-exotics-ticker {
+  animation: exotics-ticker 18s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-exotics-ticker {
+    animation: none;
+  }
+}
+
+@keyframes fact-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fact-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
