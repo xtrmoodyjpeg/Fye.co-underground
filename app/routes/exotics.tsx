@@ -1,3 +1,4 @@
+import {useLoaderData} from 'react-router';
 import type {Route} from './+types/exotics';
 import {ExoticsTicker} from '~/components/exotics/ExoticsTicker';
 import {ExoticsHeader} from '~/components/exotics/ExoticsHeader';
@@ -7,6 +8,7 @@ import {SpecimenEditorial} from '~/components/exotics/SpecimenEditorial';
 import {LiveArchive} from '~/components/exotics/LiveArchive';
 import {ExoticsManifesto} from '~/components/exotics/ExoticsManifesto';
 import {ExoticsFooter} from '~/components/exotics/ExoticsFooter';
+import {getSpecimens} from '~/lib/specimens.server';
 
 const OG_IMAGE = '/exotics/exotics-python.webp';
 
@@ -30,7 +32,14 @@ export const meta: Route.MetaFunction = ({location}) => {
   ];
 };
 
+export async function loader() {
+  const specimens = await getSpecimens();
+  return {specimens};
+}
+
 export default function ExoticsRoute() {
+  const {specimens} = useLoaderData<typeof loader>();
+
   return (
     <div className="bg-void">
       <ExoticsTicker />
@@ -39,7 +48,7 @@ export default function ExoticsRoute() {
         <ExoticsHero />
         <FactGenerator />
         <SpecimenEditorial />
-        <LiveArchive />
+        <LiveArchive specimens={specimens} />
         <ExoticsManifesto />
       </main>
       <ExoticsFooter />

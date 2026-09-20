@@ -1,11 +1,12 @@
 import {useState} from 'react';
-import {specimens} from '~/data/specimens';
 import {SpecimenCard} from './SpecimenCard';
 import {SpecimenModal} from './SpecimenModal';
 import type {Specimen} from '~/data/specimens';
 
-export function LiveArchive() {
+export function LiveArchive({specimens}: {specimens: Specimen[]}) {
   const [activeSpecimen, setActiveSpecimen] = useState<Specimen | null>(null);
+
+  if (!specimens.length) return null;
 
   return (
     <section
