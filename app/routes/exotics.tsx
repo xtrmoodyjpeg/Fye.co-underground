@@ -1,16 +1,27 @@
 import {useLoaderData} from 'react-router';
 import type {Route} from './+types/exotics';
+import {ExoticsPreloader} from '~/components/exotics/ExoticsPreloader';
 import {ExoticsTicker} from '~/components/exotics/ExoticsTicker';
 import {ExoticsHeader} from '~/components/exotics/ExoticsHeader';
 import {ExoticsHero} from '~/components/exotics/ExoticsHero';
 import {FactGenerator} from '~/components/exotics/FactGenerator';
 import {SpecimenEditorial} from '~/components/exotics/SpecimenEditorial';
 import {LiveArchive} from '~/components/exotics/LiveArchive';
+import {AnimalContent} from '~/components/exotics/AnimalContent';
 import {ExoticsManifesto} from '~/components/exotics/ExoticsManifesto';
 import {ExoticsFooter} from '~/components/exotics/ExoticsFooter';
 import {getSpecimens} from '~/lib/specimens.server';
 
 const OG_IMAGE = '/exotics/exotics-python.webp';
+
+export const links: Route.LinksFunction = () => [
+  {
+    rel: 'preload',
+    as: 'image',
+    href: '/exotics/exotics-logo-frog.webp',
+    type: 'image/webp',
+  },
+];
 
 export const meta: Route.MetaFunction = ({location}) => {
   const title = 'FYE.EXOTICS — Reptile Archive by FYE.CO';
@@ -42,6 +53,7 @@ export default function ExoticsRoute() {
 
   return (
     <div className="bg-void">
+      <ExoticsPreloader />
       <ExoticsTicker />
       <ExoticsHeader />
       <main>
@@ -49,6 +61,7 @@ export default function ExoticsRoute() {
         <FactGenerator />
         <SpecimenEditorial />
         <LiveArchive specimens={specimens} />
+        <AnimalContent />
         <ExoticsManifesto />
       </main>
       <ExoticsFooter />

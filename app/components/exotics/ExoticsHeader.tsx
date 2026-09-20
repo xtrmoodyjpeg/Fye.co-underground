@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 const NAV_LINKS = [
   {label: 'Fact Files', href: '#facts'},
   {label: 'Live Archive', href: '#archive'},
+  {label: 'Species', href: '#species'},
   {label: 'About', href: '#about'},
 ];
 
