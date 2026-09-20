@@ -18,14 +18,14 @@ const NAV_LINKS = [
   {label: 'Shop', to: '/shop'},
   {label: 'Story', to: '/story'},
   {label: 'Lookbook', to: '/lookbook'},
-  {label: 'Journal', to: '/blogs/news'},
+  {label: 'Exotics', to: '/exotics'},
 ];
 
-export function Header({isLoggedIn, cart}: HeaderProps) {
+export function Header({cart}: HeaderProps) {
   return (
     <div className="sticky top-0 z-40 bg-black text-paper">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-2 font-mono text-[10px] uppercase tracking-widest text-paper/60 sm:px-10">
-        <span>Lookbook / Drops / Journal</span>
+        <span>Lookbook / Drops / Exotics</span>
         <span className="hidden sm:inline">
           Made for the ones who see different
         </span>
@@ -55,7 +55,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
             </NavLink>
           ))}
         </nav>
-        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+        <HeaderCtas cart={cart} />
       </header>
     </div>
   );
@@ -78,32 +78,13 @@ export function HeaderMenu() {
           {link.label}
         </NavLink>
       ))}
-      <NavLink
-        to="/account"
-        onClick={close}
-        prefetch="intent"
-        style={activeLinkStyle}
-      >
-        Account
-      </NavLink>
     </nav>
   );
 }
 
-function HeaderCtas({isLoggedIn, cart}: Pick<HeaderProps, 'isLoggedIn' | 'cart'>) {
+function HeaderCtas({cart}: Pick<HeaderProps, 'cart'>) {
   return (
     <div className="flex items-center gap-4 text-paper">
-      <NavLink
-        prefetch="intent"
-        to="/account"
-        className="hidden font-mono text-xs uppercase tracking-widest hover:text-signal sm:inline"
-      >
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
-      </NavLink>
       <SearchToggle />
       <CartToggle cart={cart} />
       <HeaderMenuMobileToggle />
