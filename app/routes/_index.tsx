@@ -8,6 +8,15 @@ export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | For Your Eyes'}];
 };
 
+export const links: Route.LinksFunction = () => [
+  {
+    rel: 'preload',
+    as: 'image',
+    href: '/fye-co-logo-gator.webp',
+    type: 'image/webp',
+  },
+];
+
 export async function loader({context}: Route.LoaderArgs) {
   const {storefront} = context;
   const [{products}] = await Promise.all([
