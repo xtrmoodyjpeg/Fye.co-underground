@@ -37,8 +37,13 @@ export function Header({cart}: HeaderProps) {
           prefetch="intent"
           to="/"
           end
-          className="font-display text-xl tracking-wide text-paper"
+          className="flex items-center gap-2 font-display text-xl tracking-wide text-paper"
         >
+          <img
+            src="/fc-logo-lockup.webp"
+            alt=""
+            className="h-7 w-auto object-contain"
+          />
           FYE.CO
         </NavLink>
         <nav
