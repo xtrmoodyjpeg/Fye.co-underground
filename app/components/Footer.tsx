@@ -10,12 +10,12 @@ interface FooterProps {
 
 const FOOTER_COLUMNS = [
   {
-    heading: 'Collections',
+    heading: 'Categories',
     links: [
-      {label: 'Sketch Series', to: '/collections/all'},
-      {label: 'Heavyweight', to: '/collections/all'},
-      {label: 'After Dark', to: '/collections/all'},
-      {label: 'Essentials', to: '/collections/all'},
+      {label: 'Outerwear', to: '/shop/fc-dino-track-jacket'},
+      {label: 'Tops', to: '/shop/i-love-fc-tee'},
+      {label: 'Bottoms', to: '/shop/pixel-flamingo-swim-shorts'},
+      {label: 'Accessories', to: '/shop/fye-co-crew-socks-red-logo'},
     ],
   },
   {
@@ -34,6 +34,7 @@ const FOOTER_COLUMNS = [
       {label: 'The People', to: '/story'},
       {label: 'Journal', to: '/blogs/news'},
       {label: 'Lookbook', to: '/lookbook'},
+      {label: 'Contact', to: '/contact'},
     ],
   },
 ];
@@ -100,6 +101,16 @@ export function Footer({
             }
           </Await>
         </Suspense>
+
+        <div className="border-t border-paper/10 py-4 text-center font-mono text-[10px] uppercase tracking-widest text-paper/30">
+          <Link to="/admin/contact" className="hover:text-paper/60">
+            Contact Admin
+          </Link>
+          {' · '}
+          <Link to="/admin/client-cam" className="hover:text-paper/60">
+            Client Cam Admin
+          </Link>
+        </div>
       </div>
     </footer>
   );

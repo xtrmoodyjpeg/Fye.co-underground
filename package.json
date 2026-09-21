@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "build": "shopify hydrogen build --codegen",
-    "dev": "node scripts/exotics-cms-server.mjs & shopify hydrogen dev --codegen",
+    "dev": "node scripts/exotics-cms-server.mjs & node scripts/site-server.mjs & shopify hydrogen dev --codegen",
     "cms:exotics": "node scripts/exotics-cms-server.mjs",
+    "cms:site": "node scripts/site-server.mjs",
     "preview": "shopify hydrogen preview --build",
     "lint": "eslint --no-error-on-unmatched-pattern .",
     "typecheck": "react-router typegen && tsc --noEmit",

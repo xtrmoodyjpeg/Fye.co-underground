@@ -1,8 +1,25 @@
 import {Link} from 'react-router';
+import {Image, Money} from '@shopify/hydrogen';
+import type {ProductCardItemFragment} from 'storefrontapi.generated';
 
-const DROP_TEASERS = [{name: 'Signal Hoodie'}, {name: 'Static Tee'}, {name: 'Void Cargos'}];
+const FEATURED_HANDLES = [
+  'fc-dino-track-jacket',
+  'pixel-flamingo-long-sleeve',
+  'pixel-flamingo-swim-shorts',
+];
 
-export function SeenSection() {
+export function SeenSection({
+  products,
+}: {
+  products: ProductCardItemFragment[];
+}) {
+  const byHandle = new Map(products.map((product) => [product.handle, product]));
+  const featured = FEATURED_HANDLES.map((handle) => byHandle.get(handle)).filter(
+    (product): product is ProductCardItemFragment => Boolean(product),
+  );
+
+  if (!featured.length) return null;
+
   return (
     <section className="relative overflow-hidden bg-black px-6 py-20 text-paper sm:px-10">
       <div
@@ -22,19 +39,28 @@ export function SeenSection() {
         </div>
 
         <div className="relative z-10 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:max-w-xl">
-          {DROP_TEASERS.map((product) => (
+          {featured.map((product) => (
             <Link
-              key={product.name}
-              to="/collections/all"
+              key={product.id}
+              to={`/shop/${product.handle}`}
               prefetch="intent"
               className="block rounded-2xl bg-steel/60 p-4"
             >
-              <div className="aspect-[3/4] w-full rounded-xl bg-steel" />
+              <div className="aspect-[3/4] w-full overflow-hidden rounded-xl bg-steel">
+                {product.featuredImage && (
+                  <Image
+                    data={product.featuredImage}
+                    aspectRatio="3/4"
+                    sizes="(min-width: 64em) 20vw, (min-width: 40em) 30vw, 90vw"
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </div>
               <h3 className="mt-3 font-mono text-xs uppercase tracking-widest">
-                {product.name}
+                {product.title}
               </h3>
               <span className="mt-1 inline-block font-mono text-[10px] uppercase tracking-widest text-signal">
-                Drop 02 →
+                <Money data={product.priceRange.minVariantPrice} /> →
               </span>
             </Link>
           ))}

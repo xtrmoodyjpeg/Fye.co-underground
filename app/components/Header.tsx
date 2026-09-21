@@ -19,6 +19,7 @@ const NAV_LINKS = [
   {label: 'Story', to: '/story'},
   {label: 'Lookbook', to: '/lookbook'},
   {label: 'Exotics', to: '/exotics'},
+  {label: 'Contact', to: '/contact'},
 ];
 
 export function Header({cart}: HeaderProps) {
