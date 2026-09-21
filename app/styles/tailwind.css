@@ -44,17 +44,19 @@
   background-size: 512px 512px;
 }
 
-/* Decorative snake-scale strip run down the far left/right edges of the
+/* Decorative snake-leather border run down the far left/right edges of the
    main site only (not /exotics, which keeps its own separate visual
-   system). Shading is baked into the texture at ~18% peak alpha. */
+   system). Real snake-skin leather photo, mirror-tiled for a seamless
+   vertical repeat; the rest of the page stays on the plain cement texture
+   above. */
 .scale-edge-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 96px;
-  background-image: url('/textures/snake-scales.webp');
+  width: 120px;
+  background-image: url('/textures/snake-leather.webp');
   background-repeat: repeat-y;
-  background-size: 84px 64px;
+  background-size: 120px 330px;
   pointer-events: none;
 }
 
