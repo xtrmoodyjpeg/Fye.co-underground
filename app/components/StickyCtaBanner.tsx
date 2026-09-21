@@ -1,36 +1,44 @@
 import {useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router';
+import type {BannerConfig} from '~/lib/banner.server';
 
-const SESSION_KEY = 'fye-co-cta-banner-dismissed';
 const REVEAL_AFTER_PX = 400;
+const SCROLL_THRESHOLD_PX = 2;
 
-export function StickyCtaBanner() {
-  const [dismissed, setDismissed] = useState(true);
+export function StickyCtaBanner({banner}: {banner: BannerConfig}) {
   const [visible, setVisible] = useState(false);
+  const suppressed = useRef(false);
   const lastY = useRef(0);
 
   useEffect(() => {
-    if (window.sessionStorage.getItem(SESSION_KEY)) return;
-    setDismissed(false);
+    if (!banner.enabled || !banner.message) return;
     lastY.current = window.scrollY;
 
     function handleScroll() {
       const y = window.scrollY;
-      const scrollingUp = y < lastY.current;
+      const goingDown = y > lastY.current + SCROLL_THRESHOLD_PX;
+      const goingUp = y < lastY.current - SCROLL_THRESHOLD_PX;
+
+      if (goingDown) {
+        suppressed.current = false;
+        setVisible(false);
+      } else if (goingUp && y > REVEAL_AFTER_PX && !suppressed.current) {
+        setVisible(true);
+      }
+
       lastY.current = y;
-      setVisible(scrollingUp && y > REVEAL_AFTER_PX);
     }
 
     window.addEventListener('scroll', handleScroll, {passive: true});
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [banner.enabled, banner.message]);
+
+  if (!banner.enabled || !banner.message) return null;
 
   function dismiss() {
-    setDismissed(true);
-    window.sessionStorage.setItem(SESSION_KEY, '1');
+    suppressed.current = true;
+    setVisible(false);
   }
-
-  if (dismissed) return null;
 
   return (
     <div
@@ -40,16 +48,18 @@ export function StickyCtaBanner() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 py-3 sm:px-10">
         <p className="font-mono text-[11px] uppercase tracking-widest text-paper sm:text-xs">
-          Drop 02 is live <span className="text-paper/50">— new pieces just dropped</span>
+          {banner.message}
         </p>
         <div className="flex items-center gap-3">
-          <Link
-            to="/shop"
-            prefetch="intent"
-            className="inline-flex items-center gap-1 rounded-full bg-signal px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-paper hover:opacity-90 sm:px-5 sm:py-2.5 sm:text-xs"
-          >
-            Shop now →
-          </Link>
+          {banner.ctaLabel && banner.ctaHref && (
+            <Link
+              to={banner.ctaHref}
+              prefetch="intent"
+              className="inline-flex items-center gap-1 rounded-full bg-signal px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-paper hover:opacity-90 sm:px-5 sm:py-2.5 sm:text-xs"
+            >
+              {banner.ctaLabel} →
+            </Link>
+          )}
           <button
             type="button"
             onClick={dismiss}

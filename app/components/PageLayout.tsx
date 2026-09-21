@@ -9,11 +9,13 @@ import {Aside} from '~/components/Aside';
 import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
 import {CartMain} from '~/components/CartMain';
+import {StickyCtaBanner} from '~/components/StickyCtaBanner';
 import {
   SEARCH_ENDPOINT,
   SearchFormPredictive,
 } from '~/components/SearchFormPredictive';
 import {SearchResultsPredictive} from '~/components/SearchResultsPredictive';
+import type {BannerConfig} from '~/lib/banner.server';
 
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
@@ -21,6 +23,7 @@ interface PageLayoutProps {
   header: HeaderQuery;
   isLoggedIn: Promise<boolean>;
   publicStoreDomain: string;
+  banner: BannerConfig;
   children?: React.ReactNode;
 }
 
@@ -31,6 +34,7 @@ export function PageLayout({
   header,
   isLoggedIn,
   publicStoreDomain,
+  banner,
 }: PageLayoutProps) {
   return (
     <Aside.Provider>
@@ -44,6 +48,7 @@ export function PageLayout({
         header={header}
         publicStoreDomain={publicStoreDomain}
       />
+      <StickyCtaBanner banner={banner} />
     </Aside.Provider>
   );
 }

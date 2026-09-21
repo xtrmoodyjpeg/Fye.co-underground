@@ -17,7 +17,6 @@ const NAV_LINKS = [
   {label: 'Home', to: '/'},
   {label: 'Shop', to: '/shop'},
   {label: 'Story', to: '/story'},
-  {label: 'Lookbook', to: '/lookbook'},
   {label: 'Exotics', to: '/exotics'},
   {label: 'Contact', to: '/contact'},
 ];
@@ -26,7 +25,7 @@ export function Header({cart}: HeaderProps) {
   return (
     <div className="sticky top-0 z-40 bg-black text-paper">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-2 font-mono text-[10px] uppercase tracking-widest text-paper/60 sm:px-10">
-        <span>Lookbook / Drops / Exotics</span>
+        <span>Drops / Exotics / Contact</span>
         <span className="hidden sm:inline">
           Made for the ones who see different
         </span>

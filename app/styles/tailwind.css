@@ -37,11 +37,16 @@
   --color-charcoal: #171717;
 }
 
-/* Subtle dark cement texture layered onto every bg-black surface site-wide. */
+/* Cement grain + a subtle reptile-scale pattern (the scale texture's stroke
+   is already baked at 20% white alpha) layered onto every bg-black surface
+   site-wide -- a quiet nod to FYE.EXOTICS without touching that page's own,
+   deliberately separate, void/acid visual system. */
 .bg-black {
-  background-image: url('/textures/cement.webp');
+  background-image:
+    url('/textures/reptile-scales.webp'),
+    url('/textures/cement.webp');
   background-repeat: repeat;
-  background-size: 512px 512px;
+  background-size: 216px 180px, 512px 512px;
 }
 
 @keyframes exotics-ticker {

@@ -1,5 +1,6 @@
-// Standalone backend for two small FYE.CO site features: the contact form
-// and the "Client Cam" upload/moderation queue.
+// Standalone backend for three small FYE.CO site features: the contact
+// form, the "Client Cam" upload/moderation queue, and the sitewide sticky
+// banner's editable content.
 //
 // Same reasoning as scripts/exotics-cms-server.mjs: the Hydrogen dev/prod
 // runtime (MiniOxygen / Oxygen) is a Workers-style sandbox with no
@@ -15,6 +16,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CONTACT_PATH = path.join(ROOT, 'app/data/contactSubmissions.json');
 const CLIENT_CAM_PATH = path.join(ROOT, 'app/data/clientCamSubmissions.json');
 const CLIENT_CAM_IMAGES_DIR = path.join(ROOT, 'public/client-cam');
+const BANNER_PATH = path.join(ROOT, 'app/data/bannerConfig.json');
 const PORT = 3336;
 
 const ALLOWED_IMAGE_TYPES = new Set(['jpg', 'jpeg', 'png', 'webp']);
@@ -191,6 +193,28 @@ async function handleClientCam(req, res, parts, url) {
   return json(res, 405, {error: 'Method not allowed'});
 }
 
+async function handleBanner(req, res) {
+  if (req.method === 'GET') {
+    const config = await readJson(BANNER_PATH);
+    return json(res, 200, {banner: config});
+  }
+
+  if (req.method === 'PUT') {
+    const webRequest = await toWebRequest(req);
+    const formData = await webRequest.formData();
+    const config = {
+      enabled: formData.get('enabled') === 'on',
+      message: String(formData.get('message') || '').trim(),
+      ctaLabel: String(formData.get('ctaLabel') || '').trim(),
+      ctaHref: String(formData.get('ctaHref') || '').trim(),
+    };
+    await writeJson(BANNER_PATH, config);
+    return json(res, 200, {ok: true, banner: config});
+  }
+
+  return json(res, 405, {error: 'Method not allowed'});
+}
+
 const server = createServer(async (req, res) => {
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
@@ -210,6 +234,7 @@ const server = createServer(async (req, res) => {
     if (parts[1] === 'client-cam') {
       return await handleClientCam(req, res, parts, url);
     }
+    if (parts[1] === 'banner') return await handleBanner(req, res);
     return json(res, 404, {error: 'Not found'});
   } catch (error) {
     console.error(error);
@@ -218,5 +243,5 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.warn(`[site] contact + client-cam API listening on http://localhost:${PORT}`);
+  console.warn(`[site] contact + client-cam + banner API listening on http://localhost:${PORT}`);
 });

@@ -18,6 +18,7 @@ import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
 import {PageLayout} from './components/PageLayout';
+import {getBanner} from '~/lib/banner.server';
 
 export type RootLoader = typeof loader;
 
@@ -115,17 +116,18 @@ export async function loader(args: Route.LoaderArgs) {
 async function loadCriticalData({context}: Route.LoaderArgs) {
   const {storefront} = context;
 
-  const [header] = await Promise.all([
+  const [header, banner] = await Promise.all([
     storefront.query(HEADER_QUERY, {
       cache: storefront.CacheLong(),
       variables: {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
       },
     }),
+    getBanner(),
     // Add other queries here, so that they are loaded in parallel
   ]);
 
-  return {header};
+  return {header, banner};
 }
 
 /**

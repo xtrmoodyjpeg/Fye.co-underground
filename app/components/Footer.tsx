@@ -110,6 +110,10 @@ export function Footer({
           <Link to="/admin/client-cam" className="hover:text-paper/60">
             Client Cam Admin
           </Link>
+          {' · '}
+          <Link to="/admin/banner" className="hover:text-paper/60">
+            Banner Admin
+          </Link>
         </div>
       </div>
     </footer>
