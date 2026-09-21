@@ -37,29 +37,65 @@ export function BrandConnection() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-2 flex aspect-[16/9] flex-col justify-end rounded-2xl bg-steel/20 p-6">
-            <span className="font-exotic-headline text-2xl uppercase tracking-wide text-acid">
-              FYE.EXOTICS
-            </span>
-            <span className="mt-1 font-mono text-[10px] uppercase tracking-widest text-paper/50">
-              Cold Blooded Division / Est. 2026
-            </span>
+          <div className="relative col-span-2 flex aspect-[16/9] flex-col justify-end overflow-hidden rounded-2xl">
+            <img
+              src="/exotics/exotics-python.webp"
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"
+            />
+            <div className="relative z-10 p-6">
+              <span className="font-exotic-headline text-2xl uppercase tracking-wide text-acid">
+                FYE.EXOTICS
+              </span>
+              <span className="mt-1 block font-mono text-[10px] uppercase tracking-widest text-paper/60">
+                Cold Blooded Division / Est. 2026
+              </span>
+            </div>
           </div>
-          <div className="rounded-2xl bg-steel/20 p-5">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
-              Fact Files
-            </p>
-            <p className="mt-2 text-sm text-paper/80">
-              Rotating reptile facts, updated weekly.
-            </p>
+          <div className="relative flex aspect-square flex-col justify-end overflow-hidden rounded-2xl">
+            <img
+              src="/exotics/exotics-frog.webp"
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"
+            />
+            <div className="relative z-10 p-5">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-paper/60">
+                Fact Files
+              </p>
+              <p className="mt-2 text-sm text-paper">
+                Rotating reptile facts, updated weekly.
+              </p>
+            </div>
           </div>
-          <div className="rounded-2xl bg-steel/20 p-5">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-paper/50">
-              Live Archive
-            </p>
-            <p className="mt-2 text-sm text-paper/80">
-              Captive-bred specimens, coming soon.
-            </p>
+          <div className="relative flex aspect-square flex-col justify-end overflow-hidden rounded-2xl">
+            <img
+              src="/exotics/exotics-ball-python.webp"
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"
+            />
+            <div className="relative z-10 p-5">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-paper/60">
+                Live Archive
+              </p>
+              <p className="mt-2 text-sm text-paper">
+                Captive-bred specimens, coming soon.
+              </p>
+            </div>
           </div>
         </div>
       </div>
