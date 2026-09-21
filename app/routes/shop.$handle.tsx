@@ -63,7 +63,7 @@ export default function ShopProductRoute() {
 
   return (
     <div className="-mx-4 -mb-4 bg-black text-paper">
-      <section className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10">
+      <section className="mx-auto max-w-[1800px] px-6 py-20 sm:px-10">
         <Link
           to="/shop"
           prefetch="intent"

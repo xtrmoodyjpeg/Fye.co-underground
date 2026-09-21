@@ -16,7 +16,7 @@ export function ClientCam({photos}: {photos: ClientCamSubmission[]}) {
       id="client-cam"
       className="border-t border-paper/10 bg-black py-20 text-paper"
     >
-      <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+      <div className="mx-auto max-w-[1800px] px-6 sm:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="font-mono text-xs uppercase tracking-widest text-signal">

@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 export function Hero() {
   return (
     <section className="bg-black px-6 pb-16 pt-16 text-paper sm:px-10">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1800px]">
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-paper/10 sm:aspect-[16/9] lg:aspect-[21/9]">
           <video
             className="absolute inset-0 h-full w-full object-cover"
@@ -28,10 +28,10 @@ export function Hero() {
           </span>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-            <h1 className="font-display text-[13vw] leading-[0.85] sm:text-[7vw]">
+            <h1 className="font-display text-[13vw] leading-[0.85] sm:text-[clamp(3.5rem,7vw,8rem)]">
               FYE.CO
             </h1>
-            <p className="mt-1 font-display text-[5vw] uppercase leading-none text-paper/90 sm:mt-2 sm:text-[2.4vw]">
+            <p className="mt-1 font-display text-[5vw] uppercase leading-none text-paper/90 sm:mt-2 sm:text-[clamp(1.25rem,2.4vw,2.75rem)]">
               For your eyes
             </p>
             <Link

@@ -10,7 +10,7 @@ const FOOTER_LINKS = [
 export function ExoticsFooter() {
   return (
     <footer className="border-t border-bone/15 bg-void px-5 pb-8 pt-16 text-bone sm:px-8">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1800px]">
         <div className="grid grid-cols-1 gap-10 border-b border-bone/15 pb-12 sm:grid-cols-3">
           <div>
             <p className="font-mono text-xs uppercase tracking-widest text-acid">

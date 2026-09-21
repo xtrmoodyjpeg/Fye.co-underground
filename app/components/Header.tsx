@@ -24,14 +24,14 @@ const NAV_LINKS = [
 export function Header({cart}: HeaderProps) {
   return (
     <div className="sticky top-0 z-40 bg-black text-paper">
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-2 font-mono text-[10px] uppercase tracking-widest text-paper/60 sm:px-10">
+      <div className="mx-auto flex max-w-[1800px] items-center justify-between px-6 py-2 font-mono text-[10px] uppercase tracking-widest text-paper/60 sm:px-10">
         <span>Drops / Exotics / Contact</span>
         <span className="hidden sm:inline">
           Made for the ones who see different
         </span>
         <span aria-hidden="true">◎ ♪ ▶</span>
       </div>
-      <header className="mx-auto flex max-w-[1400px] items-center justify-between border-t border-paper/10 px-6 py-4 sm:px-10">
+      <header className="mx-auto flex max-w-[1800px] items-center justify-between border-t border-paper/10 px-6 py-4 sm:px-10">
         <NavLink
           prefetch="intent"
           to="/"
@@ -46,7 +46,7 @@ export function Header({cart}: HeaderProps) {
           FYE.CO
         </NavLink>
         <nav
-          className="hidden items-center gap-8 font-mono text-xs uppercase tracking-widest sm:flex"
+          className="hidden items-center gap-6 font-mono text-xs uppercase tracking-widest lg:flex lg:gap-8"
           aria-label="Primary"
         >
           {NAV_LINKS.map((link) => (
@@ -102,7 +102,7 @@ function HeaderMenuMobileToggle() {
   return (
     <button
       type="button"
-      className="reset text-lg sm:hidden"
+      className="reset text-lg lg:hidden"
       onClick={() => open('mobile')}
       aria-label="Open menu"
     >

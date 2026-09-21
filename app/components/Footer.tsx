@@ -48,7 +48,7 @@ export function Footer({
 }: FooterProps) {
   return (
     <footer className="bg-black px-6 pt-16 text-paper sm:px-10">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1800px]">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div className="flex aspect-[4/3] flex-col items-center justify-center rounded-2xl bg-steel/60 p-6 text-center font-display text-2xl leading-none sm:aspect-auto sm:h-full">
             Good ideas
@@ -83,7 +83,7 @@ export function Footer({
           </div>
         </div>
 
-        <p className="mt-16 select-none border-t border-paper/10 py-6 text-center font-display text-[18vw] leading-none sm:text-[9vw]">
+        <p className="mt-16 select-none border-t border-paper/10 py-6 text-center font-display text-[18vw] leading-none sm:text-[clamp(4rem,9vw,10rem)]">
           FYE.CO
         </p>
 

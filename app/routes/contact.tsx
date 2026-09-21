@@ -20,11 +20,11 @@ export default function ContactRoute() {
 
   return (
     <div className="-mx-4 -mb-4 bg-black text-paper">
-      <section className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10">
+      <section className="mx-auto max-w-[1800px] px-6 py-20 sm:px-10">
         <p className="font-mono text-xs uppercase tracking-widest text-signal">
           Get in touch
         </p>
-        <h1 className="-rotate-1 font-display text-[16vw] leading-[1.05] sm:text-[9vw]">
+        <h1 className="-rotate-1 font-display text-[16vw] leading-[1.05] sm:text-[clamp(3rem,9vw,6.5rem)]">
           Say something.
         </h1>
 

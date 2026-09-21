@@ -9,7 +9,7 @@ const SCIENTIFIC_DETAILS = [
 export function SpecimenEditorial() {
   return (
     <section className="border-t border-bone/10 bg-void px-5 py-20 text-bone sm:px-8 sm:py-28">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1800px]">
         <div className="flex items-start justify-between gap-6 border-b border-bone/15 pb-8">
           <h2 className="font-exotic-headline text-[13vw] uppercase leading-[0.85] sm:text-6xl lg:text-7xl">
             Not your

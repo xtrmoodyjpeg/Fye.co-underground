@@ -7,7 +7,7 @@ export function AnimalContent() {
       id="species"
       className="scroll-mt-20 border-t border-bone/10 bg-void px-5 py-20 text-bone sm:px-8 sm:py-28"
     >
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1800px]">
         <p className="font-mono text-xs uppercase tracking-widest text-acid">
           Animal Content / Field Library
         </p>

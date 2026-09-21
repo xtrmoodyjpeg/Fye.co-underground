@@ -23,11 +23,11 @@ export function Collections({
 
   return (
     <section className="bg-black px-6 py-20 text-paper sm:px-10">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1800px]">
         <h2 className="-rotate-1 font-display text-5xl sm:text-6xl">
           Shop by category
         </h2>
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tiles.map((tile) => (
             <div
               key={tile.name}

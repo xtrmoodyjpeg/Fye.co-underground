@@ -46,7 +46,7 @@ export function StickyCtaBanner({banner}: {banner: BannerConfig}) {
         visible ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 py-3 sm:px-10">
+      <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-4 px-5 py-3 sm:px-10">
         <p className="font-mono text-[11px] uppercase tracking-widest text-paper sm:text-xs">
           {banner.message}
         </p>

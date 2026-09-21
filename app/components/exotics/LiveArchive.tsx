@@ -13,7 +13,7 @@ export function LiveArchive({specimens}: {specimens: Specimen[]}) {
       id="archive"
       className="scroll-mt-20 border-t border-black/10 bg-bone px-5 py-20 text-black sm:px-8 sm:py-28"
     >
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1800px]">
         <p className="font-mono text-xs uppercase tracking-widest text-black/50">
           Live Archive
         </p>

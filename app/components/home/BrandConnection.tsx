@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 export function BrandConnection() {
   return (
     <section className="border-t border-paper/10 bg-black px-6 py-20 text-paper sm:px-10">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+      <div className="mx-auto grid max-w-[1800px] grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-signal">
             Two obsessions, one eye
@@ -36,8 +36,8 @@ export function BrandConnection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-2">
-          <div className="col-span-2 flex aspect-[16/9] flex-col justify-end rounded-2xl bg-steel/20 p-6 lg:col-span-2">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="col-span-2 flex aspect-[16/9] flex-col justify-end rounded-2xl bg-steel/20 p-6">
             <span className="font-exotic-headline text-2xl uppercase tracking-wide text-acid">
               FYE.EXOTICS
             </span>
