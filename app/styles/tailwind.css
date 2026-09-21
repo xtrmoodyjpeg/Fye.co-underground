@@ -37,16 +37,25 @@
   --color-charcoal: #171717;
 }
 
-/* Cement grain + a subtle reptile-scale pattern (the scale texture's stroke
-   is already baked at 20% white alpha) layered onto every bg-black surface
-   site-wide -- a quiet nod to FYE.EXOTICS without touching that page's own,
-   deliberately separate, void/acid visual system. */
+/* Subtle dark cement texture layered onto every bg-black surface site-wide. */
 .bg-black {
-  background-image:
-    url('/textures/reptile-scales.webp'),
-    url('/textures/cement.webp');
+  background-image: url('/textures/cement.webp');
   background-repeat: repeat;
-  background-size: 216px 180px, 512px 512px;
+  background-size: 512px 512px;
+}
+
+/* Decorative snake-scale strip run down the far left/right edges of the
+   main site only (not /exotics, which keeps its own separate visual
+   system). Shading is baked into the texture at ~18% peak alpha. */
+.scale-edge-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  background-image: url('/textures/snake-scales.webp');
+  background-repeat: repeat-y;
+  background-size: 84px 64px;
+  pointer-events: none;
 }
 
 @keyframes exotics-ticker {
