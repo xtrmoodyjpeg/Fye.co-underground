@@ -51,16 +51,19 @@
    above.
 
    Width is derived from the actual gutter outside the 1800px content
-   container (clamp(0px, (100vw - 1800px) / 2, 120px)) instead of a fixed
-   120px -- a fixed width painted over real content on any screen narrower
-   than content(1800px) + 240px of margin, which included plenty of
-   ordinary wide-desktop sizes. This guarantees the strip never exceeds the
-   empty space it's meant to decorate, at any viewport width. */
+   container: clamp(10px, (100vw - 1800px) / 2, 120px). On wide desktop
+   screens that formula grows to fill whatever real empty gutter exists
+   (capped at 120px), exactly as before. Below that it floors at a flat
+   10px on every screen down to the smallest phone -- every section's
+   padding is at minimum 24px (px-6), so a 10px strip sits inside that
+   padding on all of them and can never overlap real text or images, while
+   still giving every device, not just wide desktop, a visible edge
+   accent. */
 .scale-edge-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: clamp(0px, calc((100vw - 1800px) / 2), 120px);
+  width: clamp(10px, calc((100vw - 1800px) / 2), 120px);
   background-image: url('/textures/snake-leather.webp');
   background-repeat: repeat-y;
   background-size: 120px 330px;
