@@ -48,15 +48,23 @@
    main site only (not /exotics, which keeps its own separate visual
    system). Real snake-skin leather photo, mirror-tiled for a seamless
    vertical repeat; the rest of the page stays on the plain cement texture
-   above. */
+   above.
+
+   Width is derived from the actual gutter outside the 1800px content
+   container (clamp(0px, (100vw - 1800px) / 2, 120px)) instead of a fixed
+   120px -- a fixed width painted over real content on any screen narrower
+   than content(1800px) + 240px of margin, which included plenty of
+   ordinary wide-desktop sizes. This guarantees the strip never exceeds the
+   empty space it's meant to decorate, at any viewport width. */
 .scale-edge-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: clamp(0px, calc((100vw - 1800px) / 2), 120px);
   background-image: url('/textures/snake-leather.webp');
   background-repeat: repeat-y;
   background-size: 120px 330px;
+  overflow: hidden;
   pointer-events: none;
 }
 

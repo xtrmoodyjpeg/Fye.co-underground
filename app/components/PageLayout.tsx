@@ -41,13 +41,10 @@ export function PageLayout({
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside />
+      <div aria-hidden="true" className="scale-edge-overlay left-0" />
       <div
         aria-hidden="true"
-        className="scale-edge-overlay left-0 hidden xl:block"
-      />
-      <div
-        aria-hidden="true"
-        className="scale-edge-overlay right-0 hidden xl:block [background-position-x:right]"
+        className="scale-edge-overlay right-0 [background-position-x:right]"
       />
       {header && <Header cart={cart} isLoggedIn={isLoggedIn} />}
       <main>{children}</main>
