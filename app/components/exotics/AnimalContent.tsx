@@ -9,18 +9,18 @@ export function AnimalContent() {
     >
       <div className="mx-auto max-w-[1800px]">
         <p className="font-mono text-xs uppercase tracking-widest text-acid">
-          Animal Content / Field Library
+          Meet The Fam
         </p>
         <h2 className="mt-3 font-exotic-headline text-[13vw] uppercase leading-[0.85] sm:text-6xl lg:text-7xl">
-          Species we
+          The ones we&rsquo;re
           <br />
-          work with.
+          obsessed with.
         </h2>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-bone/70 sm:text-lg">
-          A growing field library of the animals FYE.EXOTICS is documenting,
-          caring for, and in some cases working toward a captive bred
-          breeding program with. Not all of them are for sale -- some are
-          simply worth understanding.
+          Some of these are already ours, some are still just crushes -- but
+          we can&rsquo;t stop talking about any of them. Not everyone here is
+          for sale. Some of them are just too weird and too cool not to gush
+          about.
         </p>
 
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">

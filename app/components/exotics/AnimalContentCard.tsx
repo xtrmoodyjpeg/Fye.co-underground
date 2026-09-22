@@ -4,10 +4,10 @@ const DATA_ROWS: Array<{
   label: string;
   key: 'location' | 'lifestyle' | 'diet' | 'behavior';
 }> = [
-  {label: 'Location', key: 'location'},
-  {label: 'Lifestyle', key: 'lifestyle'},
-  {label: 'Diet', key: 'diet'},
-  {label: 'Behavior', key: 'behavior'},
+  {label: "Where They're From", key: 'location'},
+  {label: 'Day In The Life', key: 'lifestyle'},
+  {label: "What's For Dinner", key: 'diet'},
+  {label: 'Personality', key: 'behavior'},
 ];
 
 export function AnimalContentCard({
@@ -23,7 +23,7 @@ export function AnimalContentCard({
     <article className="border border-bone/15">
       <div className="flex items-center justify-between border-b border-bone/15 px-5 py-3 font-mono text-[11px] uppercase tracking-widest text-fog">
         <span>
-          Species File / {String(index + 1).padStart(3, '0')}
+          Bestie File / {String(index + 1).padStart(3, '0')}
         </span>
         <span>{animal.category}</span>
       </div>
@@ -41,8 +41,8 @@ export function AnimalContentCard({
             <span aria-hidden="true" className="text-xl text-bone/20">
               +
             </span>
-            <span>Field Photo Pending</span>
-            <span className="text-bone/30">Documentation In Progress</span>
+            <span>Photo Coming Soon</span>
+            <span className="text-bone/30">We Just Haven&rsquo;t Snapped One Yet</span>
           </div>
         )}
       </div>
