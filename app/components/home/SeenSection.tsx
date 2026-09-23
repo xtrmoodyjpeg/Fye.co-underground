@@ -24,11 +24,11 @@ export function SeenSection({
     <section className="relative overflow-hidden bg-black px-6 py-20 text-paper sm:px-10">
       <div
         aria-hidden="true"
-        className="absolute -left-16 top-1/2 h-64 w-64 -translate-y-1/2 rounded-[50%_50%_40%_60%/60%_40%_60%_40%] bg-paper/10"
+        className="absolute -left-16 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-paper/10"
       />
       <div className="relative mx-auto flex max-w-[1800px] flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
         <div className="relative">
-          <h2 className="-rotate-2 font-display text-[24vw] leading-[1.1] text-signal sm:text-[clamp(4rem,10vw,11rem)]">
+          <h2 className="-rotate-2 font-display text-[clamp(3.5rem,24vw,7rem)] leading-[1.1] text-signal sm:text-[clamp(4rem,10vw,11rem)]">
             Seen
           </h2>
           <p className="mt-4 font-mono text-xs uppercase tracking-widest text-paper/60">
