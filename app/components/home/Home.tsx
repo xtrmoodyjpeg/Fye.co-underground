@@ -2,6 +2,7 @@ import {Hero} from './Hero';
 import {Shop} from './Shop';
 import {SeenSection} from './SeenSection';
 import {Collections} from './Collections';
+import {Manifesto} from './Manifesto';
 import {BrandConnection} from './BrandConnection';
 import {ClientCam} from './ClientCam';
 import type {ProductCardItemFragment} from 'storefrontapi.generated';
@@ -20,6 +21,7 @@ export function Home({
       <Shop products={products} />
       <SeenSection products={products} />
       <Collections products={products} />
+      <Manifesto />
       <BrandConnection />
       <ClientCam photos={clientCamPhotos} />
     </>
