@@ -12,29 +12,29 @@ export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.EXOTICS | Admin — Live Archive'}];
 };
 
-export async function loader() {
-  const specimens = await getSpecimens();
+export async function loader({context}: Route.LoaderArgs) {
+  const specimens = await getSpecimens(context.env);
   return {specimens};
 }
 
-export async function action({request}: Route.ActionArgs) {
+export async function action({request, context}: Route.ActionArgs) {
   const formData = await request.formData();
   const intent = formData.get('intent');
 
   if (intent === 'delete') {
     const slug = String(formData.get('slug'));
-    const result = await deleteSpecimen(slug);
+    const result = await deleteSpecimen(context.env, slug);
     return data(result);
   }
 
   if (intent === 'update') {
     const slug = String(formData.get('slug'));
-    const result = await updateSpecimen(slug, formData);
+    const result = await updateSpecimen(context.env, slug, formData);
     return data(result, {status: result.ok ? 200 : 400});
   }
 
   // intent === 'create'
-  const result = await createSpecimen(formData);
+  const result = await createSpecimen(context.env, formData);
   return data(result, {status: result.ok ? 200 : 400});
 }
 

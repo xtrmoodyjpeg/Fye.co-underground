@@ -19,12 +19,12 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export async function loader({context}: Route.LoaderArgs) {
-  const {storefront} = context;
+  const {storefront, env} = context;
   const [{products}, clientCamPhotos] = await Promise.all([
     storefront.query(HOME_PRODUCTS_QUERY, {
       variables: {first: 8},
     }),
-    getClientCamSubmissions('approved'),
+    getClientCamSubmissions(env, 'approved'),
   ]);
 
   return {
@@ -34,9 +34,9 @@ export async function loader({context}: Route.LoaderArgs) {
   };
 }
 
-export async function action({request}: Route.ActionArgs) {
+export async function action({request, context}: Route.ActionArgs) {
   const formData = await request.formData();
-  const result = await createClientCamSubmission(formData);
+  const result = await createClientCamSubmission(context.env, formData);
   return data(result, {status: result.ok ? 200 : 400});
 }
 

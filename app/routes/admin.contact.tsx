@@ -10,23 +10,23 @@ export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | Admin — Contact'}];
 };
 
-export async function loader() {
-  const submissions = await getContactSubmissions();
+export async function loader({context}: Route.LoaderArgs) {
+  const submissions = await getContactSubmissions(context.env);
   return {submissions};
 }
 
-export async function action({request}: Route.ActionArgs) {
+export async function action({request, context}: Route.ActionArgs) {
   const formData = await request.formData();
   const intent = formData.get('intent');
   const id = String(formData.get('id'));
 
   if (intent === 'delete') {
-    const result = await deleteContactSubmission(id);
+    const result = await deleteContactSubmission(context.env, id);
     return data(result);
   }
 
   if (intent === 'mark-read') {
-    const result = await updateContactSubmission(id, 'read');
+    const result = await updateContactSubmission(context.env, id, 'read');
     return data(result);
   }
 

@@ -1,14 +1,8 @@
 // Type definitions for LIVE ARCHIVE specimens on /exotics.
 //
-// Shaped to drop into a future Shopify product/metaobject without a
-// rewrite: `status` maps to a metafield or metaobject field, `price` and
-// `availability` are dynamic values (currently editable placeholders since
-// no live-animal commerce exists yet), and `coverImage` / `gallery` map to
-// Shopify media.
-//
-// The actual data lives in app/data/specimens.json, managed through the
-// /admin/exotics CMS (see app/lib/specimens.server.ts) rather than hardcoded
-// here -- this file only defines the shape.
+// The actual data lives in Shopify as Metaobjects (type "specimen"),
+// managed through the /admin/exotics CMS -- see app/lib/specimens.server.ts
+// for the Admin API reads/writes. This file only defines the shape.
 
 export type SpecimenStatus =
   | 'ARCHIVED'

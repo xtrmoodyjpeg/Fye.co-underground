@@ -43,8 +43,8 @@ export const meta: Route.MetaFunction = ({location}) => {
   ];
 };
 
-export async function loader() {
-  const specimens = await getSpecimens();
+export async function loader({context}: Route.LoaderArgs) {
+  const specimens = await getSpecimens(context.env);
   return {specimens};
 }
 

@@ -10,24 +10,24 @@ export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | Admin — Client Cam'}];
 };
 
-export async function loader() {
-  const submissions = await getClientCamSubmissions();
+export async function loader({context}: Route.LoaderArgs) {
+  const submissions = await getClientCamSubmissions(context.env);
   return {submissions};
 }
 
-export async function action({request}: Route.ActionArgs) {
+export async function action({request, context}: Route.ActionArgs) {
   const formData = await request.formData();
   const intent = formData.get('intent');
   const id = String(formData.get('id'));
 
   if (intent === 'delete') {
-    return data(await deleteClientCamSubmission(id));
+    return data(await deleteClientCamSubmission(context.env, id));
   }
   if (intent === 'approve') {
-    return data(await updateClientCamSubmission(id, 'approved'));
+    return data(await updateClientCamSubmission(context.env, id, 'approved'));
   }
   if (intent === 'reject') {
-    return data(await updateClientCamSubmission(id, 'rejected'));
+    return data(await updateClientCamSubmission(context.env, id, 'rejected'));
   }
 
   return data({ok: false}, {status: 400});

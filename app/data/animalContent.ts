@@ -1,6 +1,6 @@
 // Species profiles for the /exotics "ANIMAL CONTENT" section -- the broader
 // field library of animals FYE.EXOTICS works with or is documenting, distinct
-// from the for-sale LIVE ARCHIVE specimens (see app/data/specimens.json).
+// from the for-sale LIVE ARCHIVE specimens (see app/lib/specimens.server.ts).
 //
 // `images` stays empty for species without a real photo on file yet -- per
 // project policy this page never substitutes AI-generated animal imagery for

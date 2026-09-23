@@ -6,14 +6,14 @@ export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | Admin — Sticky Banner'}];
 };
 
-export async function loader() {
-  const banner = await getBanner();
+export async function loader({context}: Route.LoaderArgs) {
+  const banner = await getBanner(context.env);
   return {banner};
 }
 
-export async function action({request}: Route.ActionArgs) {
+export async function action({request, context}: Route.ActionArgs) {
   const formData = await request.formData();
-  const result = await updateBanner(formData);
+  const result = await updateBanner(context.env, formData);
   return data(result, {status: result.ok ? 200 : 400});
 }
 

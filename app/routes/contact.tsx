@@ -6,9 +6,9 @@ export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | Contact'}];
 };
 
-export async function action({request}: Route.ActionArgs) {
+export async function action({request, context}: Route.ActionArgs) {
   const formData = await request.formData();
-  const result = await createContactSubmission(formData);
+  const result = await createContactSubmission(context.env, formData);
   return data(result, {status: result.ok ? 200 : 400});
 }
 
