@@ -4,7 +4,6 @@ import {SeenSection} from './SeenSection';
 import {Collections} from './Collections';
 import {BrandConnection} from './BrandConnection';
 import {ClientCam} from './ClientCam';
-import {Preloader} from './Preloader';
 import type {ProductCardItemFragment} from 'storefrontapi.generated';
 import type {ClientCamSubmission} from '~/lib/clientCam.server';
 
@@ -17,7 +16,6 @@ export function Home({
 }) {
   return (
     <>
-      <Preloader />
       <Hero />
       <Shop products={products} />
       <SeenSection products={products} />

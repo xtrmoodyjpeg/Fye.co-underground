@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 
-const SESSION_KEY = 'fye-exotics-preloader-seen';
 const MORPH_AT_MS = 650;
 const FADE_AT_MS = 1900;
 const DONE_AT_MS = 2500;
@@ -15,12 +14,8 @@ export function ExoticsPreloader() {
     const reduceMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
-    const alreadySeen = window.sessionStorage.getItem(SESSION_KEY);
 
-    if (reduceMotion || alreadySeen) {
-      window.sessionStorage.setItem(SESSION_KEY, '1');
-      return;
-    }
+    if (reduceMotion) return;
 
     setVisible(true);
     document.body.style.overflow = 'hidden';
@@ -30,7 +25,6 @@ export function ExoticsPreloader() {
     const doneTimer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = '';
-      window.sessionStorage.setItem(SESSION_KEY, '1');
     }, DONE_AT_MS);
 
     return () => {
@@ -44,7 +38,6 @@ export function ExoticsPreloader() {
   function skip() {
     setVisible(false);
     document.body.style.overflow = '';
-    window.sessionStorage.setItem(SESSION_KEY, '1');
   }
 
   if (!visible) return null;

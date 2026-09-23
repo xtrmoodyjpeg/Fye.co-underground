@@ -10,6 +10,7 @@ import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
 import {CartMain} from '~/components/CartMain';
 import {StickyCtaBanner} from '~/components/StickyCtaBanner';
+import {Preloader} from '~/components/Preloader';
 import {
   SEARCH_ENDPOINT,
   SearchFormPredictive,
@@ -38,6 +39,7 @@ export function PageLayout({
 }: PageLayoutProps) {
   return (
     <Aside.Provider>
+      <Preloader />
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside />
