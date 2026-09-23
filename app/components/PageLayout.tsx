@@ -1,4 +1,4 @@
-import {Await, Link} from 'react-router';
+import {Await, Link, useLocation} from 'react-router';
 import {Suspense, useId} from 'react';
 import type {
   CartApiQueryFragment,
@@ -37,9 +37,10 @@ export function PageLayout({
   publicStoreDomain,
   banner,
 }: PageLayoutProps) {
+  const location = useLocation();
   return (
     <Aside.Provider>
-      <Preloader />
+      <Preloader key={location.pathname} />
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside />
