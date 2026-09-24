@@ -18,11 +18,11 @@ export function Home({
   return (
     <>
       <Hero />
-      <Shop products={products} />
-      <SeenSection products={products} />
-      <Collections products={products} />
       <Manifesto />
+      <SeenSection products={products} />
       <BrandConnection />
+      <Shop products={products} />
+      <Collections products={products} />
       <ClientCam photos={clientCamPhotos} />
     </>
   );

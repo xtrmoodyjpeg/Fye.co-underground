@@ -9,11 +9,14 @@
 
 export type AnimalCategory = 'amphibian' | 'reptile' | 'arachnid';
 
+export type AnimalStatus = 'Coming Soon' | 'In Our Care' | 'Breeding Project';
+
 export interface AnimalProfile {
   id: string;
   commonName: string;
   scientificName: string | null;
   category: AnimalCategory;
+  status: AnimalStatus;
   location: string;
   lifestyle: string;
   diet: string | null;
@@ -26,9 +29,10 @@ export interface AnimalProfile {
 export const animalContent: AnimalProfile[] = [
   {
     id: 'red-eye-tree-frog',
-    commonName: 'Red Eye Tree Frog',
+    commonName: 'Red-Eyed Tree Frog',
     scientificName: 'Agalychnis callidryas',
     category: 'amphibian',
+    status: 'Coming Soon',
     location:
       'Found in the tropical lowland rainforests of southern Mexico, Central America (such as Costa Rica and Panama), and parts of northern South America.',
     lifestyle:
@@ -45,6 +49,7 @@ export const animalContent: AnimalProfile[] = [
     commonName: 'Veiled Chameleon',
     scientificName: 'Chamaeleo calyptratus',
     category: 'reptile',
+    status: 'Coming Soon',
     location:
       'Found in the continental zone of Africa and the Northern hemisphere in countries such as Yemen and South Arabia. They are a high pet-trade reptile, so you can find a lot of wild chameleons in certain parts of Florida too, roaming wild.',
     lifestyle:
@@ -60,6 +65,7 @@ export const animalContent: AnimalProfile[] = [
     commonName: 'Yellow Belly Mourning Gecko',
     scientificName: 'Lepidodactylus lugubris',
     category: 'reptile',
+    status: 'Coming Soon',
     location: 'Native to and found in places like Hawaii, Southeast Asia, and more.',
     lifestyle:
       'A small, all-female arboreal lizard that thrives in groups -- they don’t need any males to reproduce. Some say they are all clones of one original mourning gecko.',
@@ -69,13 +75,14 @@ export const animalContent: AnimalProfile[] = [
     funFact: null,
     breedingNote:
       'Here @ fye.exotics we are focusing on captive bred mourning geckos. Available soon.',
-    images: [],
+    images: ['/exotics/animal-content/yellow-belly-mourning-gecko.webp'],
   },
   {
     id: 'solomon-island-tree-boa',
     commonName: 'Solomon Island Tree Boa',
     scientificName: 'Candoia bibroni',
     category: 'reptile',
+    status: 'In Our Care',
     location:
       'Solomon Islands and other southwestern Pacific islands. Found thriving in trees or on the ground.',
     lifestyle:
@@ -87,13 +94,14 @@ export const animalContent: AnimalProfile[] = [
       'Female Solomon Island boas give live birth. They are different from your average boa -- some say they favor vipers because of their slender head, except they are harmless and non-venomous.',
     breedingNote:
       'Here @ fye.exotics we are working closely with this snake species -- one of the most difficult snakes to care for in captivity due to mostly being imported or wild caught. Hopefully one day we can launch a successful breeding program.',
-    images: [],
+    images: ['/exotics/animal-content/solomon-island-tree-boa.webp'],
   },
   {
     id: 'ocellated-skink',
     commonName: 'Ocellated Skink',
     scientificName: 'Chalcides ocellatus',
     category: 'reptile',
+    status: 'In Our Care',
     location:
       'Very widespread around North Africa, the Mediterranean, and the Middle East, extending into parts of Asia. They’ve also established introduced populations in parts of the United States, including Florida.',
     lifestyle:
@@ -108,10 +116,11 @@ export const animalContent: AnimalProfile[] = [
     images: ['/exotics/animal-content/ocellated-skink.webp'],
   },
   {
-    id: 'green-emerald-skink',
-    commonName: 'Green Emerald Skink',
+    id: 'green-emerald-tree-skink',
+    commonName: 'Green Emerald Tree Skink',
     scientificName: 'Lamprolepis smaragdina',
     category: 'reptile',
+    status: 'Breeding Project',
     location:
       'A huge island distribution through parts of Indonesia, the Philippines, New Guinea, the Solomon Islands, Micronesia, and surrounding Pacific islands.',
     lifestyle:
@@ -123,13 +132,14 @@ export const animalContent: AnimalProfile[] = [
       'Captive bred emeralds can live up to around 12 years with proper care. My favorite skink as well!',
     breedingNote:
       'Here @ fye.exotics we are working closely with this species to produce some captive bred offspring. Hopefully by 2027-early 2028 we have our first hatchlings!',
-    images: ['/exotics/animal-content/green-emerald-skink.webp'],
+    images: ['/exotics/animal-content/green-emerald-tree-skink.webp'],
   },
   {
     id: 'papuan-carpet-python',
     commonName: 'Papuan Carpet Python',
     scientificName: 'Morelia spilota harrisoni',
     category: 'reptile',
+    status: 'In Our Care',
     location: 'Native to Australia, New Guinea (formerly Papuan), and coastal areas of Northern Australia.',
     lifestyle:
       'Semi-arboreal -- these guys love climbing. They’ll use the ground but are excellent climbers, found resting in sturdy elevated branches and high trees, and will sometimes hide in spaces on the ground or in logs. Like other pythons, they have heat-sensitive pits around the mouth that help them detect warm-bodied prey. Their sense of smell/chemical detection through tongue-flicking is also extremely important.',
@@ -140,13 +150,14 @@ export const animalContent: AnimalProfile[] = [
       'If you like carpet pythons but don’t necessarily want the size of a big coastal, Papuans are generally slender, athletic, smaller, and better tempered. These are still constrictor species, so handle with care -- males average 3-5ft at most, females can get bigger, up to 6-8ft.',
     breedingNote:
       'Here @ fye.exotics we are taking our time and effort to care for our carpet python -- we started with one male so far, so hopefully in the future we can start a successful breeding program.',
-    images: [],
+    images: ['/exotics/animal-content/papuan-carpet-python.webp'],
   },
   {
     id: 'crested-gecko',
     commonName: 'Crested Gecko',
-    scientificName: null,
+    scientificName: 'Correlophus ciliatus',
     category: 'reptile',
+    status: 'In Our Care',
     location:
       'Native to New Caledonia, a tropical island nation in the Southwest Pacific, thriving in humid rainforests. They can live about 10-15 years in captivity.',
     lifestyle:
@@ -155,13 +166,14 @@ export const animalContent: AnimalProfile[] = [
     behavior: null,
     funFact: 'Crested geckos produce a variety of different genes and colorways, like Dalmatian, Lily White, and Axanthic.',
     breedingNote: null,
-    images: [],
+    images: ['/exotics/animal-content/crested-gecko.webp'],
   },
   {
     id: 'california-red-jumping-spider',
     commonName: 'California Red Jumping Spider',
     scientificName: 'Phidippus adumbratus',
     category: 'arachnid',
+    status: 'In Our Care',
     location: 'Native to Western North America, such as Southern California, Baja California, and Mexico.',
     lifestyle:
       'This is a daytime visual hunter, not a spider that builds a traditional prey-catching web. Like other Phidippus, it watches its surroundings with excellent eyesight, stalks prey, and then pounces. Jumping spiders can even plan indirect approaches toward prey and repeatedly stop and reorient toward where they last saw it -- evidence of surprisingly sophisticated spatial memory for such a tiny animal.',
@@ -170,21 +182,22 @@ export const animalContent: AnimalProfile[] = [
       'They use silk very differently from orb-weavers. Besides safety lines, they construct little silken retreats/hammocks where they rest, hide, and molt. Females are usually bigger than males and differ in color. I’ve owned and handled a handful of these jumping spiders and I can say they are one of my favorites because they are very observant.',
     funFact: null,
     breedingNote: null,
-    images: [],
+    images: ['/exotics/animal-content/california-red-jumping-spider.webp'],
   },
   {
     id: 'green-keel-belly-lizard',
-    commonName: 'Green Keel Belly Lizard',
+    commonName: 'Green Keel-Bellied Lizard',
     scientificName: 'Gastropholis prasina',
     category: 'reptile',
+    status: 'In Our Care',
     location: 'Found in coastal areas and lowland forests of East Africa, including Kenya and Tanzania.',
     lifestyle:
       'They are diurnal (active during the day) and strictly arboreal, spending nearly all their time high up in trees, rarely coming down to the forest floor.',
-    diet: 'Primarily insectivorous, feeding on various small insects such as crickets, cockroaches, and worms. I’ve even fed mine small Minos, and organic grain-free cat food -- usually the seafood options, in small amounts, as a fatty treat.',
+    diet: 'Primarily insectivorous, feeding on various small insects such as crickets, cockroaches, and worms. I’ve even fed mine small minnows, and organic grain-free cat food -- usually the seafood options, in small amounts, as a fatty treat.',
     behavior:
       'They are incredibly fast, active predators that stalk, chase, and leap to catch moving insects. In the wild they are naturally timid and hide quickly under leaves, but in captivity they often become highly curious and inquisitive.',
     funFact: 'The keel lizard is basically a small monitor, and it also has a prehensile tail like a monkey.',
     breedingNote: null,
-    images: [],
+    images: ['/exotics/animal-content/green-keel-belly-lizard.webp'],
   },
 ];

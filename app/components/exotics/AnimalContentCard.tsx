@@ -1,4 +1,4 @@
-import type {AnimalProfile} from '~/data/animalContent';
+import type {AnimalProfile, AnimalStatus} from '~/data/animalContent';
 
 const DATA_ROWS: Array<{
   label: string;
@@ -9,6 +9,12 @@ const DATA_ROWS: Array<{
   {label: "What's For Dinner", key: 'diet'},
   {label: 'Personality', key: 'behavior'},
 ];
+
+const STATUS_STYLES: Record<AnimalStatus, string> = {
+  'Coming Soon': 'border-bone/20 text-bone/50',
+  'In Our Care': 'border-acid/40 text-acid',
+  'Breeding Project': 'border-acid/40 bg-acid/10 text-acid',
+};
 
 export function AnimalContentCard({
   animal,
@@ -28,13 +34,13 @@ export function AnimalContentCard({
         <span>{animal.category}</span>
       </div>
 
-      <div className="relative flex aspect-[4/3] items-center justify-center border-b border-bone/15 bg-charcoal">
+      <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden border-b border-bone/15 bg-charcoal">
         {hasPhoto ? (
           <img
             src={animal.images[0]}
             alt={animal.commonName}
             loading="lazy"
-            className="h-full w-full object-contain p-6"
+            className="h-full w-full object-cover"
           />
         ) : (
           <div className="flex flex-col items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-fog">
@@ -48,9 +54,16 @@ export function AnimalContentCard({
       </div>
 
       <div className="p-6 sm:p-7">
-        <h3 className="font-exotic-headline text-2xl uppercase leading-none text-bone sm:text-3xl">
-          {animal.commonName}
-        </h3>
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-exotic-headline text-2xl uppercase leading-none text-bone sm:text-3xl">
+            {animal.commonName}
+          </h3>
+          <span
+            className={`shrink-0 border px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest ${STATUS_STYLES[animal.status]}`}
+          >
+            {animal.status}
+          </span>
+        </div>
         {animal.scientificName && (
           <p className="mt-2 font-exotic-serif text-sm italic text-bone/60">
             {animal.scientificName}
