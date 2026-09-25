@@ -498,6 +498,39 @@ button.reset:hover:not(:has(> *)) {
   background: rgba(0, 0, 0, 0.8);
 }
 
+/*
+* --------------------------------------------------
+* Torn-paper product fact card (ProductFactCard.tsx)
+* --------------------------------------------------
+*/
+.torn-paper {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.torn-paper-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background:
+    linear-gradient(135deg, var(--color-paper) 25%, transparent 25.5%) 0 0,
+    linear-gradient(225deg, var(--color-paper) 25%, transparent 25.5%) 0 0,
+    linear-gradient(315deg, var(--color-paper) 25%, transparent 25.5%) 0 0,
+    linear-gradient(45deg, var(--color-paper) 25%, transparent 25.5%) 0 0;
+  background-size: 14px 14px;
+  background-repeat: repeat-x;
+}
+
+.torn-paper-edge-top {
+  top: -13px;
+}
+
+.torn-paper-edge-bottom {
+  bottom: -13px;
+  transform: scaleY(-1);
+}
+
 .product-main {
   align-self: start;
   position: sticky;

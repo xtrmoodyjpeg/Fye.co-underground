@@ -10,6 +10,7 @@ import {
 import type {Route} from './+types/shop.$handle';
 import {ProductPrice} from '~/components/ProductPrice';
 import {ProductGallery} from '~/components/ProductGallery';
+import {ProductFactCard} from '~/components/ProductFactCard';
 import {ProductForm} from '~/components/ProductForm';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
@@ -101,10 +102,9 @@ export default function ShopProductRoute() {
               />
             </div>
 
-            <div
-              className="mt-8 max-w-md text-sm leading-relaxed text-paper/80"
-              dangerouslySetInnerHTML={{__html: product.descriptionHtml}}
-            />
+            <div className="max-w-md">
+              <ProductFactCard descriptionHtml={product.descriptionHtml} />
+            </div>
           </div>
         </div>
       </section>

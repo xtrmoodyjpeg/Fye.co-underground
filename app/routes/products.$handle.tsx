@@ -10,6 +10,7 @@ import {
 } from '@shopify/hydrogen';
 import {ProductPrice} from '~/components/ProductPrice';
 import {ProductGallery} from '~/components/ProductGallery';
+import {ProductFactCard} from '~/components/ProductFactCard';
 import {ProductForm} from '~/components/ProductForm';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
@@ -116,12 +117,7 @@ export default function Product() {
         />
         <br />
         <br />
-        <p>
-          <strong>Description</strong>
-        </p>
-        <br />
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-        <br />
+        <ProductFactCard descriptionHtml={descriptionHtml} />
       </div>
       <Analytics.ProductView
         data={{
