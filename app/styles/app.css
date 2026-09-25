@@ -446,6 +446,58 @@ button.reset:hover:not(:has(> *)) {
   width: 100%;
 }
 
+.product-gallery {
+  position: relative;
+}
+
+.product-gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-gallery-arrow-prev {
+  left: 0.75rem;
+}
+
+.product-gallery-arrow-next {
+  right: 0.75rem;
+}
+
+.product-gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.product-gallery-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0;
+  cursor: pointer;
+}
+
+.product-gallery-dot-active {
+  background: rgba(0, 0, 0, 0.8);
+}
+
 .product-main {
   align-self: start;
   position: sticky;

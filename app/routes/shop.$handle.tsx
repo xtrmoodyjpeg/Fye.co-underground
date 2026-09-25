@@ -9,7 +9,7 @@ import {
 } from '@shopify/hydrogen';
 import type {Route} from './+types/shop.$handle';
 import {ProductPrice} from '~/components/ProductPrice';
-import {ProductImage} from '~/components/ProductImage';
+import {ProductGallery} from '~/components/ProductGallery';
 import {ProductForm} from '~/components/ProductForm';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
@@ -74,7 +74,10 @@ export default function ShopProductRoute() {
 
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div className="overflow-hidden rounded-2xl bg-paper [&_.product-image]:h-full [&_.product-image]:w-full [&_img]:object-contain">
-            <ProductImage image={selectedVariant?.image} />
+            <ProductGallery
+              images={product.images.nodes}
+              selectedVariantImage={selectedVariant?.image}
+            />
           </div>
 
           <div>
@@ -170,6 +173,16 @@ const SHOP_PRODUCT_FRAGMENT = `#graphql
     handle
     descriptionHtml
     description
+    images(first: 10) {
+      nodes {
+        __typename
+        id
+        url
+        altText
+        width
+        height
+      }
+    }
     encodedVariantExistence
     encodedVariantAvailability
     options {
