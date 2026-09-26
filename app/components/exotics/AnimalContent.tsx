@@ -1,7 +1,7 @@
-import {animalContent} from '~/data/animalContent';
+import type {AnimalProfile} from '~/data/animalContent';
 import {AnimalContentCard} from './AnimalContentCard';
 
-export function AnimalContent() {
+export function AnimalContent({animals}: {animals: AnimalProfile[]}) {
   return (
     <section
       id="species"
@@ -24,7 +24,7 @@ export function AnimalContent() {
         </p>
 
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {animalContent.map((animal, index) => (
+          {animals.map((animal, index) => (
             <AnimalContentCard key={animal.id} animal={animal} index={index} />
           ))}
         </div>

@@ -11,6 +11,7 @@ import {AnimalContent} from '~/components/exotics/AnimalContent';
 import {ExoticsManifesto} from '~/components/exotics/ExoticsManifesto';
 import {ExoticsFooter} from '~/components/exotics/ExoticsFooter';
 import {getSpecimens} from '~/lib/specimens.server';
+import {getAnimals} from '~/lib/animalContent.server';
 
 const OG_IMAGE = '/exotics/exotics-python.webp';
 
@@ -44,12 +45,15 @@ export const meta: Route.MetaFunction = ({location}) => {
 };
 
 export async function loader({context}: Route.LoaderArgs) {
-  const specimens = await getSpecimens(context.env);
-  return {specimens};
+  const [specimens, animals] = await Promise.all([
+    getSpecimens(context.env),
+    getAnimals(context.env),
+  ]);
+  return {specimens, animals};
 }
 
 export default function ExoticsRoute() {
-  const {specimens} = useLoaderData<typeof loader>();
+  const {specimens, animals} = useLoaderData<typeof loader>();
 
   return (
     <div className="bg-void">
@@ -61,7 +65,7 @@ export default function ExoticsRoute() {
         <FactGenerator />
         <SpecimenEditorial />
         <LiveArchive specimens={specimens} />
-        <AnimalContent />
+        <AnimalContent animals={animals} />
         <ExoticsManifesto />
       </main>
       <ExoticsFooter />
