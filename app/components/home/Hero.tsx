@@ -2,7 +2,7 @@ import {Link} from 'react-router';
 
 export function Hero() {
   return (
-    <section className="bg-black px-6 pb-16 pt-16 text-paper sm:px-10">
+    <section className="bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1800px]">
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-paper/10 sm:aspect-[16/9] lg:aspect-[21/9]">
           <video

@@ -27,8 +27,8 @@ export function SeenSection({
         className="absolute -left-16 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-paper/10"
       />
       <div className="relative mx-auto flex max-w-[1800px] flex-col gap-10 lg:flex-row lg:items-center lg:justify-center lg:gap-24">
-        <div className="relative">
-          <h2 className="-rotate-2 font-heading text-[clamp(3.5rem,24vw,7rem)] leading-[1.1] text-signal sm:text-[clamp(4rem,10vw,11rem)]">
+        <div className="relative min-w-0">
+          <h2 className="-rotate-2 font-heading text-[clamp(3rem,16vw,5.5rem)] leading-[1.1] text-signal sm:text-[clamp(3.5rem,7vw,8rem)]">
             FYE.CO
           </h2>
           <p className="mt-4 font-mono text-xs uppercase tracking-widest text-paper/60">
@@ -38,7 +38,7 @@ export function SeenSection({
           </p>
         </div>
 
-        <div className="relative z-10 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:max-w-xl">
+        <div className="relative z-10 grid shrink-0 grid-cols-1 gap-4 sm:grid-cols-3 lg:max-w-xl">
           {featured.map((product) => (
             <Link
               key={product.id}

@@ -2,7 +2,7 @@ import {Link} from 'react-router';
 
 export function Manifesto() {
   return (
-    <section className="border-t border-paper/10 bg-black px-6 py-24 text-paper sm:px-10">
+    <section className="border-t border-paper/10 bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1800px]">
         <div className="mx-auto max-w-2xl text-center">
           <p className="font-mono text-xs uppercase tracking-widest text-signal">
