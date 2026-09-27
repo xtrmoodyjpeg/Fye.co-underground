@@ -16,7 +16,7 @@ export default function LookbookRoute() {
         <p className="font-mono text-xs uppercase tracking-widest text-signal">
           Drop 02
         </p>
-        <h1 className="-rotate-1 font-heading text-[16vw] leading-[1.05] sm:text-[clamp(3rem,9vw,6.5rem)]">
+        <h1 className="font-heading text-[16vw] leading-[1.05] sm:text-[clamp(3rem,9vw,6.5rem)]">
           Lookbook
         </h1>
         <p className="mt-4 max-w-sm font-mono text-xs uppercase tracking-widest text-paper/60">

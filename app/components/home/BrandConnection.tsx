@@ -8,7 +8,7 @@ export function BrandConnection() {
           <p className="font-mono text-xs uppercase tracking-widest text-signal">
             Two obsessions, one eye
           </p>
-          <h2 className="-rotate-1 font-heading text-4xl leading-[1.05] sm:text-5xl">
+          <h2 className="font-heading text-4xl leading-[1.05] sm:text-5xl">
             Same hands. Different
             <br />
             kind of rare.

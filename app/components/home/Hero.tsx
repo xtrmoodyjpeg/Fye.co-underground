@@ -1,11 +1,22 @@
 import {Link} from 'react-router';
+import {useEffect, useRef} from 'react';
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (reduceMotion) videoRef.current?.pause();
+  }, []);
+
   return (
     <section className="bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1800px]">
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-paper/10 sm:aspect-[16/9] lg:aspect-[21/9]">
           <video
+            ref={videoRef}
             className="absolute inset-0 h-full w-full object-cover"
             poster="/videos/hero-loop-poster.jpg"
             autoPlay
@@ -27,7 +38,7 @@ export function Hero() {
             Behind the drop
           </span>
 
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 sm:px-10">
             <h1 className="font-heading text-[13vw] leading-[0.85] sm:text-[clamp(3.5rem,7vw,8rem)]">
               FYE.CO
             </h1>

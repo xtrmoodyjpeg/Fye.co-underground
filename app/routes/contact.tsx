@@ -24,7 +24,7 @@ export default function ContactRoute() {
         <p className="font-mono text-xs uppercase tracking-widest text-signal">
           Get in touch
         </p>
-        <h1 className="-rotate-1 font-heading text-[16vw] leading-[1.05] sm:text-[clamp(3rem,9vw,6.5rem)]">
+        <h1 className="font-heading text-[16vw] leading-[1.05] sm:text-[clamp(3rem,9vw,6.5rem)]">
           Say something.
         </h1>
 
@@ -37,15 +37,15 @@ export default function ContactRoute() {
 
             <dl className="mt-10 space-y-6 font-mono text-xs uppercase tracking-widest text-paper/60">
               <div>
-                <dt className="text-paper/40">Email</dt>
+                <dt className="text-paper/60">Email</dt>
                 <dd className="mt-1 text-paper">hello@fye.co</dd>
               </div>
               <div>
-                <dt className="text-paper/40">Based in</dt>
+                <dt className="text-paper/60">Based in</dt>
                 <dd className="mt-1 text-paper">Orlando, FL</dd>
               </div>
               <div>
-                <dt className="text-paper/40">Response time</dt>
+                <dt className="text-paper/60">Response time</dt>
                 <dd className="mt-1 text-paper">1-3 business days</dd>
               </div>
             </dl>

@@ -9,7 +9,7 @@ export function Shop({products}: {products: ProductCardItemFragment[]}) {
     <section className="bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1800px]">
         <div className="flex items-end justify-between">
-          <h2 className="-rotate-1 font-heading text-5xl sm:text-6xl">Shop</h2>
+          <h2 className="font-heading text-5xl sm:text-6xl">Shop</h2>
           <Link
             to="/shop"
             prefetch="intent"

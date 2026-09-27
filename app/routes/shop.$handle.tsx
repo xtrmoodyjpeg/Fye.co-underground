@@ -88,7 +88,7 @@ export default function ShopProductRoute() {
             <h1 className="mt-2 font-heading text-4xl sm:text-5xl">
               {product.title}
             </h1>
-            <div className="mt-4 font-mono text-sm uppercase tracking-widest text-signal [&_s]:text-paper/40">
+            <div className="mt-4 font-mono text-sm uppercase tracking-widest text-signal [&_s]:text-paper/60">
               <ProductPrice
                 price={selectedVariant?.price}
                 compareAtPrice={selectedVariant?.compareAtPrice}

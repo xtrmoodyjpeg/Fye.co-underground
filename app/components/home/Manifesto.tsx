@@ -4,11 +4,11 @@ export function Manifesto() {
   return (
     <section className="border-t border-paper/10 bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1800px]">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="max-w-2xl">
           <p className="font-mono text-xs uppercase tracking-widest text-signal">
             The Manifesto
           </p>
-          <h2 className="-rotate-1 mt-3 font-heading text-4xl leading-[1.05] sm:text-5xl">
+          <h2 className="mt-3 font-heading text-4xl leading-[1.05] sm:text-5xl">
             Not built to blend in.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-paper/80 sm:text-lg">

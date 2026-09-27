@@ -83,7 +83,7 @@ export function Footer({
           </div>
         </div>
 
-        <p className="mt-16 select-none border-t border-paper/10 py-6 text-center font-display text-[18vw] leading-none sm:text-[clamp(4rem,9vw,10rem)]">
+        <p className="mt-16 select-none border-t border-paper/10 py-6 font-display text-[18vw] leading-none sm:text-[clamp(4rem,9vw,10rem)]">
           FYE.CO
         </p>
 
@@ -102,7 +102,7 @@ export function Footer({
           </Await>
         </Suspense>
 
-        <div className="border-t border-paper/10 py-4 text-center font-mono text-[10px] uppercase tracking-widest text-paper/30">
+        <div className="border-t border-paper/10 py-4 font-mono text-[10px] uppercase tracking-widest text-paper/50">
           <Link to="/admin/contact" className="hover:text-paper/60">
             Contact Admin
           </Link>

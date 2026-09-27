@@ -22,7 +22,7 @@ export function ClientCam({photos}: {photos: ClientCamSubmission[]}) {
             <p className="font-mono text-xs uppercase tracking-widest text-signal">
               Client Cam
             </p>
-            <h2 className="mt-2 -rotate-1 font-heading text-5xl sm:text-6xl">
+            <h2 className="mt-2 font-heading text-5xl sm:text-6xl">
               Show us how you wear it.
             </h2>
           </div>
@@ -79,7 +79,7 @@ export function ClientCam({photos}: {photos: ClientCamSubmission[]}) {
                   </p>
                 )}
 
-                <p className="font-mono text-[10px] uppercase leading-relaxed tracking-widest text-paper/40">
+                <p className="font-mono text-[10px] uppercase leading-relaxed tracking-widest text-paper/60">
                   Photos are reviewed before they appear publicly.
                 </p>
 
@@ -114,7 +114,7 @@ export function ClientCam({photos}: {photos: ClientCamSubmission[]}) {
             ))}
           </div>
         ) : (
-          <p className="px-6 font-mono text-xs uppercase tracking-widest text-paper/40 sm:px-10">
+          <p className="px-6 font-mono text-xs uppercase tracking-widest text-paper/60 sm:px-10">
             No client photos yet -- be the first to post.
           </p>
         )}

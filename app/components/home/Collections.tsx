@@ -24,7 +24,7 @@ export function Collections({
   return (
     <section className="bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1800px]">
-        <h2 className="-rotate-1 font-heading text-5xl sm:text-6xl">
+        <h2 className="font-heading text-5xl sm:text-6xl">
           Shop by category
         </h2>
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -55,7 +55,7 @@ export function Collections({
                   prefetch="intent"
                   className="mt-4 inline-flex items-center gap-1 rounded-full bg-signal px-4 py-2 font-mono text-[10px] uppercase tracking-widest"
                 >
-                  Shop →
+                  Shop <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>
