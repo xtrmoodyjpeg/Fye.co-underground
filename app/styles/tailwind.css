@@ -23,7 +23,9 @@
 
 @font-face {
   font-family: 'DxMonstralBlur';
-  src: url('../assets/fonts/DxMonstralBlur.otf') format('opentype');
+  src:
+    url('../assets/fonts/DxMonstralBlur.woff2') format('woff2'),
+    url('../assets/fonts/DxMonstralBlur.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

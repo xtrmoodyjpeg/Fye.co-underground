@@ -5,10 +5,19 @@ export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
     const reduceMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
-    if (reduceMotion) videoRef.current?.pause();
+    if (reduceMotion) {
+      video.pause();
+      return;
+    }
+    // iOS Safari frequently ignores the `autoplay` attribute for muted
+    // background video; nudging playback imperatively is the standard
+    // workaround.
+    video.play().catch(() => {});
   }, []);
 
   return (
@@ -25,8 +34,8 @@ export function Hero() {
             playsInline
             preload="auto"
           >
-            <source src="/videos/hero-loop.webm" type="video/webm" />
             <source src="/videos/hero-loop.mp4" type="video/mp4" />
+            <source src="/videos/hero-loop.webm" type="video/webm" />
           </video>
 
           <div
