@@ -40,28 +40,23 @@ export function SeenSection({
 
         <div className="relative z-10 grid shrink-0 grid-cols-1 gap-4 sm:grid-cols-3 lg:max-w-xl">
           {featured.map((product) => (
-            <Link
-              key={product.id}
-              to={`/shop/${product.handle}`}
-              prefetch="intent"
-              className="block rounded-2xl bg-steel/60 p-4"
-            >
-              <div className="aspect-[3/4] w-full overflow-hidden rounded-xl bg-steel">
+            <Link key={product.id} to={`/shop/${product.handle}`} prefetch="intent" className="block">
+              <div className="aspect-square w-full overflow-hidden rounded-2xl bg-paper">
                 {product.featuredImage && (
                   <Image
                     data={product.featuredImage}
-                    aspectRatio="3/4"
+                    aspectRatio="1/1"
                     sizes="(min-width: 64em) 20vw, (min-width: 40em) 30vw, 90vw"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 )}
               </div>
               <h3 className="mt-3 font-mono text-xs uppercase tracking-widest">
                 {product.title}
               </h3>
-              <span className="mt-1 inline-block font-mono text-[10px] uppercase tracking-widest text-signal">
-                <Money data={product.priceRange.minVariantPrice} /> →
-              </span>
+              <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-paper/60">
+                <Money data={product.priceRange.minVariantPrice} />
+              </p>
             </Link>
           ))}
         </div>
