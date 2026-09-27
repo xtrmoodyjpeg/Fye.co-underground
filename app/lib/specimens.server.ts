@@ -153,15 +153,19 @@ function readFieldsFromFormData(formData: FormData) {
 }
 
 export async function getSpecimens(env: AdminEnv): Promise<Specimen[]> {
-  const data = await adminGraphQL<{
-    metaobjects: {nodes: RawMetaobject[]};
-  }>(
-    env,
-    `query GetSpecimens {
-      metaobjects(type: "${TYPE}", first: 50) { nodes { ${FIELDS_SELECTION} } }
-    }`,
-  );
-  return data.metaobjects.nodes.map(toSpecimen);
+  try {
+    const data = await adminGraphQL<{
+      metaobjects: {nodes: RawMetaobject[]};
+    }>(
+      env,
+      `query GetSpecimens {
+        metaobjects(type: "${TYPE}", first: 50) { nodes { ${FIELDS_SELECTION} } }
+      }`,
+    );
+    return data.metaobjects.nodes.map(toSpecimen);
+  } catch {
+    return [];
+  }
 }
 
 export async function getSpecimen(

@@ -65,16 +65,20 @@ export async function getClientCamSubmissions(
   env: AdminEnv,
   status?: ClientCamStatus,
 ): Promise<ClientCamSubmission[]> {
-  const data = await adminGraphQL<{metaobjects: {nodes: RawMetaobject[]}}>(
-    env,
-    `query GetClientCamSubmissions {
-      metaobjects(type: "${TYPE}", first: 100, sortKey: "updated_at", reverse: true) {
-        nodes { ${FIELDS_SELECTION} }
-      }
-    }`,
-  );
-  const submissions = data.metaobjects.nodes.map(toSubmission);
-  return status ? submissions.filter((s) => s.status === status) : submissions;
+  try {
+    const data = await adminGraphQL<{metaobjects: {nodes: RawMetaobject[]}}>(
+      env,
+      `query GetClientCamSubmissions {
+        metaobjects(type: "${TYPE}", first: 100, sortKey: "updated_at", reverse: true) {
+          nodes { ${FIELDS_SELECTION} }
+        }
+      }`,
+    );
+    const submissions = data.metaobjects.nodes.map(toSubmission);
+    return status ? submissions.filter((s) => s.status === status) : submissions;
+  } catch {
+    return [];
+  }
 }
 
 export async function createClientCamSubmission(

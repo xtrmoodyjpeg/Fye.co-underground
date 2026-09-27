@@ -130,17 +130,21 @@ function readFieldsFromFormData(formData: FormData) {
 }
 
 export async function getAnimals(env: AdminEnv): Promise<AnimalProfile[]> {
-  const data = await adminGraphQL<{
-    metaobjects: {nodes: RawMetaobject[]};
-  }>(
-    env,
-    `query GetAnimals {
-      metaobjects(type: "${TYPE}", first: 50) { nodes { ${FIELDS_SELECTION} } }
-    }`,
-  );
-  return data.metaobjects.nodes
-    .map(toAnimal)
-    .sort((a, b) => a.sortOrder - b.sortOrder);
+  try {
+    const data = await adminGraphQL<{
+      metaobjects: {nodes: RawMetaobject[]};
+    }>(
+      env,
+      `query GetAnimals {
+        metaobjects(type: "${TYPE}", first: 50) { nodes { ${FIELDS_SELECTION} } }
+      }`,
+    );
+    return data.metaobjects.nodes
+      .map(toAnimal)
+      .sort((a, b) => a.sortOrder - b.sortOrder);
+  } catch {
+    return [];
+  }
 }
 
 export async function getAnimal(
