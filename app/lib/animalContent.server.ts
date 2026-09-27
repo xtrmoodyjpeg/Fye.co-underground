@@ -108,8 +108,20 @@ async function uniqueHandle(env: AdminEnv, base: string): Promise<string> {
 }
 
 async function nextSortOrder(env: AdminEnv): Promise<number> {
-  const animals = await getAnimals(env);
-  const max = animals.reduce((m, a) => Math.max(m, a.sortOrder), 0);
+  const data = await adminGraphQL<{
+    metaobjects: {nodes: Array<{fields: Array<{key: string; value: string | null}>}>};
+  }>(
+    env,
+    `query NextSortOrder {
+      metaobjects(type: "${TYPE}", first: 50) {
+        nodes { fields { key value } }
+      }
+    }`,
+  );
+  const max = data.metaobjects.nodes.reduce((m, node) => {
+    const value = node.fields.find((f) => f.key === 'sort_order')?.value;
+    return Math.max(m, Number(value) || 0);
+  }, 0);
   return max + 1;
 }
 
@@ -129,14 +141,32 @@ function readFieldsFromFormData(formData: FormData) {
   return fields;
 }
 
-export async function getAnimals(env: AdminEnv): Promise<AnimalProfile[]> {
+interface StorefrontClient {
+  query<T>(query: string, options?: {variables?: Record<string, unknown>}): Promise<T>;
+}
+
+const STOREFRONT_FIELDS_SELECTION = `
+  handle
+  fields {
+    key
+    value
+    references(first: 10) { nodes { ... on MediaImage { image { url } } } }
+  }
+`;
+
+// Reads go through the Storefront API instead of the Admin API: the
+// fye_animal metaobject definition has Storefront API access enabled
+// (unlike specimen/banner_config/client_cam_submission), so these public
+// cards keep working even when PRIVATE_ADMIN_API_TOKEN is unset or
+// invalid. Writes (create/update/delete below) still require the Admin
+// API -- the /admin/animals CMS needs a working admin token regardless.
+export async function getAnimals(storefront: StorefrontClient): Promise<AnimalProfile[]> {
   try {
-    const data = await adminGraphQL<{
+    const data = await storefront.query<{
       metaobjects: {nodes: RawMetaobject[]};
     }>(
-      env,
       `query GetAnimals {
-        metaobjects(type: "${TYPE}", first: 50) { nodes { ${FIELDS_SELECTION} } }
+        metaobjects(type: "${TYPE}", first: 50) { nodes { ${STOREFRONT_FIELDS_SELECTION} } }
       }`,
     );
     return data.metaobjects.nodes

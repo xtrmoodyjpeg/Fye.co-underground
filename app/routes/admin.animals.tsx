@@ -13,7 +13,7 @@ export const meta: Route.MetaFunction = () => {
 };
 
 export async function loader({context}: Route.LoaderArgs) {
-  const animals = await getAnimals(context.env);
+  const animals = await getAnimals(context.storefront);
   return {animals};
 }
 
