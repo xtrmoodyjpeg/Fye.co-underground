@@ -38,7 +38,7 @@ export function SeenSection({
           </p>
         </div>
 
-        <div className="relative z-10 grid shrink-0 grid-cols-1 gap-4 sm:grid-cols-3 lg:max-w-xl">
+        <div className="relative z-10 grid shrink-0 grid-cols-3 gap-4 lg:max-w-xl">
           {featured.map((product) => (
             <Link key={product.id} to={`/shop/${product.handle}`} prefetch="intent" className="block">
               <div className="aspect-square w-full overflow-hidden rounded-2xl bg-paper">
