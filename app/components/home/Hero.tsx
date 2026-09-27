@@ -38,7 +38,7 @@ export function Hero() {
             Behind the drop
           </span>
 
-          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 sm:px-10">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center sm:px-10">
             <h1 className="font-heading text-[13vw] leading-[0.85] sm:text-[clamp(3.5rem,7vw,8rem)]">
               FYE.CO
             </h1>
