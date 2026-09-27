@@ -22,7 +22,7 @@ export function ClientCam({photos}: {photos: ClientCamSubmission[]}) {
             <p className="font-mono text-xs uppercase tracking-widest text-signal">
               Client Cam
             </p>
-            <h2 className="mt-2 -rotate-1 font-display text-5xl sm:text-6xl">
+            <h2 className="mt-2 -rotate-1 font-heading text-5xl sm:text-6xl">
               Show us how you wear it.
             </h2>
           </div>

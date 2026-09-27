@@ -24,7 +24,7 @@ export function Collections({
   return (
     <section className="bg-black px-6 py-20 text-paper sm:px-10">
       <div className="mx-auto max-w-[1800px]">
-        <h2 className="-rotate-1 font-display text-5xl sm:text-6xl">
+        <h2 className="-rotate-1 font-heading text-5xl sm:text-6xl">
           Shop by category
         </h2>
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -46,7 +46,7 @@ export function Collections({
                 className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"
               />
               <div className="relative z-10">
-                <h3 className="font-display text-3xl">{tile.name}</h3>
+                <h3 className="font-heading text-3xl">{tile.name}</h3>
                 <p className="mt-1 font-mono text-xs uppercase tracking-widest text-paper/70">
                   {tile.tagline}
                 </p>

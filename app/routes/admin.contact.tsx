@@ -42,7 +42,7 @@ export default function AdminContactRoute() {
         <p className="font-mono text-xs uppercase tracking-widest text-signal">
           FYE.CO Admin
         </p>
-        <h1 className="mt-2 font-display text-4xl">Contact inbox</h1>
+        <h1 className="mt-2 font-heading text-4xl">Contact inbox</h1>
 
         <div className="mt-8 flex flex-col gap-4">
           {submissions.map((submission) => (

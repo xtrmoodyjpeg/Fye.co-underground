@@ -8,7 +8,7 @@ export function Manifesto() {
           <p className="font-mono text-xs uppercase tracking-widest text-signal">
             The Manifesto
           </p>
-          <h2 className="-rotate-1 mt-3 font-display text-4xl leading-[1.05] sm:text-5xl">
+          <h2 className="-rotate-1 mt-3 font-heading text-4xl leading-[1.05] sm:text-5xl">
             Not built to blend in.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-paper/80 sm:text-lg">

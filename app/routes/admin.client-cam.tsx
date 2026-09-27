@@ -67,7 +67,7 @@ export default function AdminClientCamRoute() {
         <p className="font-mono text-xs uppercase tracking-widest text-signal">
           FYE.CO Admin
         </p>
-        <h1 className="mt-2 font-display text-4xl">Client Cam</h1>
+        <h1 className="mt-2 font-heading text-4xl">Client Cam</h1>
         <p className="mt-2 max-w-xl text-sm text-paper/60">
           Approve photos to add them to the live ticker on the homepage.
         </p>

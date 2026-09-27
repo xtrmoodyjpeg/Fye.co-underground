@@ -28,7 +28,7 @@ export default function AdminBannerRoute() {
         <p className="font-mono text-xs uppercase tracking-widest text-signal">
           FYE.CO Admin
         </p>
-        <h1 className="mt-2 font-display text-4xl">Sticky banner</h1>
+        <h1 className="mt-2 font-heading text-4xl">Sticky banner</h1>
         <p className="mt-2 max-w-lg text-sm text-paper/60">
           Shown site-wide when a visitor scrolls back up the page. Use it for
           sales, new arrivals, or announcements.

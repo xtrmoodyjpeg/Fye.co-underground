@@ -24,7 +24,7 @@ export default function ContactRoute() {
         <p className="font-mono text-xs uppercase tracking-widest text-signal">
           Get in touch
         </p>
-        <h1 className="-rotate-1 font-display text-[16vw] leading-[1.05] sm:text-[clamp(3rem,9vw,6.5rem)]">
+        <h1 className="-rotate-1 font-heading text-[16vw] leading-[1.05] sm:text-[clamp(3rem,9vw,6.5rem)]">
           Say something.
         </h1>
 

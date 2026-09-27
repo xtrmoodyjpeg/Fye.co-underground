@@ -28,7 +28,7 @@ export function SeenSection({
       />
       <div className="relative mx-auto flex max-w-[1800px] flex-col gap-10 lg:flex-row lg:items-center lg:justify-center lg:gap-24">
         <div className="relative">
-          <h2 className="-rotate-2 font-display text-[clamp(3.5rem,24vw,7rem)] leading-[1.1] text-signal sm:text-[clamp(4rem,10vw,11rem)]">
+          <h2 className="-rotate-2 font-heading text-[clamp(3.5rem,24vw,7rem)] leading-[1.1] text-signal sm:text-[clamp(4rem,10vw,11rem)]">
             FYE.CO
           </h2>
           <p className="mt-4 font-mono text-xs uppercase tracking-widest text-paper/60">

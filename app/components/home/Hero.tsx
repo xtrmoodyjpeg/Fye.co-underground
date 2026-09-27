@@ -28,10 +28,10 @@ export function Hero() {
           </span>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-            <h1 className="font-display text-[13vw] leading-[0.85] sm:text-[clamp(3.5rem,7vw,8rem)]">
+            <h1 className="font-heading text-[13vw] leading-[0.85] sm:text-[clamp(3.5rem,7vw,8rem)]">
               FYE.CO
             </h1>
-            <p className="mt-1 font-display text-[5vw] uppercase leading-none text-paper/90 sm:mt-2 sm:text-[clamp(1.25rem,2.4vw,2.75rem)]">
+            <p className="mt-1 font-heading text-[5vw] uppercase leading-none text-paper/90 sm:mt-2 sm:text-[clamp(1.25rem,2.4vw,2.75rem)]">
               For your eyes
             </p>
             <Link
