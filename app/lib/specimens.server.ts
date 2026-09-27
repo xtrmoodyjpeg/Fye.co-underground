@@ -127,9 +127,19 @@ async function uniqueSlug(env: AdminEnv, base: string): Promise<string> {
 }
 
 async function nextArchiveNumber(env: AdminEnv): Promise<string> {
-  const specimens = await getSpecimens(env);
-  const numbers = specimens
-    .map((s) => Number(String(s.archiveNumber).replace(/\D/g, '')))
+  const data = await adminGraphQL<{
+    metaobjects: {nodes: Array<{fields: Array<{key: string; value: string | null}>}>};
+  }>(
+    env,
+    `query NextArchiveNumber {
+      metaobjects(type: "${TYPE}", first: 50) {
+        nodes { fields { key value } }
+      }
+    }`,
+  );
+  const numbers = data.metaobjects.nodes
+    .map((node) => node.fields.find((f) => f.key === 'archiveNumber')?.value ?? '')
+    .map((v) => Number(v.replace(/\D/g, '')))
     .filter((n) => !Number.isNaN(n));
   const next = (numbers.length ? Math.max(...numbers) : 0) + 1;
   return `FX-${String(next).padStart(3, '0')}`;
@@ -152,14 +162,31 @@ function readFieldsFromFormData(formData: FormData) {
   return fields;
 }
 
-export async function getSpecimens(env: AdminEnv): Promise<Specimen[]> {
+interface StorefrontClient {
+  query<T>(query: string, options?: {variables?: Record<string, unknown>}): Promise<T>;
+}
+
+const STOREFRONT_FIELDS_SELECTION = `
+  handle
+  fields {
+    key
+    value
+    reference { ... on MediaImage { image { url } } }
+    references(first: 10) { nodes { ... on MediaImage { image { url } } } }
+  }
+`;
+
+// Reads go through the Storefront API: the specimen metaobject definition
+// has Storefront API access enabled, so this keeps working even when
+// PRIVATE_ADMIN_API_TOKEN is unset or invalid. Writes below still require
+// the Admin API -- the /admin/exotics CMS needs a working admin token.
+export async function getSpecimens(storefront: StorefrontClient): Promise<Specimen[]> {
   try {
-    const data = await adminGraphQL<{
+    const data = await storefront.query<{
       metaobjects: {nodes: RawMetaobject[]};
     }>(
-      env,
       `query GetSpecimens {
-        metaobjects(type: "${TYPE}", first: 50) { nodes { ${FIELDS_SELECTION} } }
+        metaobjects(type: "${TYPE}", first: 50) { nodes { ${STOREFRONT_FIELDS_SELECTION} } }
       }`,
     );
     return data.metaobjects.nodes.map(toSpecimen);

@@ -7,7 +7,7 @@ export const meta: Route.MetaFunction = () => {
 };
 
 export async function loader({context}: Route.LoaderArgs) {
-  const banner = await getBanner(context.env);
+  const banner = await getBanner(context.storefront);
   return {banner};
 }
 

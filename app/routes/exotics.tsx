@@ -46,7 +46,7 @@ export const meta: Route.MetaFunction = ({location}) => {
 
 export async function loader({context}: Route.LoaderArgs) {
   const [specimens, animals] = await Promise.all([
-    getSpecimens(context.env),
+    getSpecimens(context.storefront),
     getAnimals(context.storefront),
   ]);
   return {specimens, animals};

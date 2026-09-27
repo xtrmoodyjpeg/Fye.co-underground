@@ -114,7 +114,7 @@ export async function loader(args: Route.LoaderArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({context}: Route.LoaderArgs) {
-  const {storefront, env} = context;
+  const {storefront} = context;
 
   const [header, banner] = await Promise.all([
     storefront.query(HEADER_QUERY, {
@@ -123,7 +123,7 @@ async function loadCriticalData({context}: Route.LoaderArgs) {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
       },
     }),
-    getBanner(env),
+    getBanner(storefront),
     // Add other queries here, so that they are loaded in parallel
   ]);
 

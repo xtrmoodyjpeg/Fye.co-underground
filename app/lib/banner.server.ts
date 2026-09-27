@@ -39,18 +39,25 @@ function toBanner(raw: RawMetaobject): BannerConfig {
   };
 }
 
-export async function getBanner(env: AdminEnv): Promise<BannerConfig> {
+interface StorefrontClient {
+  query<T>(query: string, options?: {variables?: Record<string, unknown>}): Promise<T>;
+}
+
+// Reads go through the Storefront API: the banner_config metaobject
+// definition has Storefront API access enabled, so the sticky banner
+// keeps working even when PRIVATE_ADMIN_API_TOKEN is unset or invalid.
+// Writes (updateBanner below) still require the Admin API.
+export async function getBanner(storefront: StorefrontClient): Promise<BannerConfig> {
   try {
-    const data = await adminGraphQL<{
-      metaobjectByHandle: RawMetaobject | null;
+    const data = await storefront.query<{
+      metaobject: RawMetaobject | null;
     }>(
-      env,
       `query GetBanner($handle: MetaobjectHandleInput!) {
-        metaobjectByHandle(handle: $handle) { id fields { key value } }
+        metaobject(handle: $handle) { fields { key value } }
       }`,
-      {handle: {type: TYPE, handle: HANDLE}},
+      {variables: {handle: {type: TYPE, handle: HANDLE}}},
     );
-    return data.metaobjectByHandle ? toBanner(data.metaobjectByHandle) : FALLBACK_BANNER;
+    return data.metaobject ? toBanner(data.metaobject) : FALLBACK_BANNER;
   } catch {
     return FALLBACK_BANNER;
   }

@@ -13,7 +13,7 @@ export const meta: Route.MetaFunction = () => {
 };
 
 export async function loader({context}: Route.LoaderArgs) {
-  const specimens = await getSpecimens(context.env);
+  const specimens = await getSpecimens(context.storefront);
   return {specimens};
 }
 
