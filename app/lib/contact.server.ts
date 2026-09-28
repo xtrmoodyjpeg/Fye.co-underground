@@ -41,15 +41,19 @@ function toSubmission(raw: RawMetaobject): ContactSubmission {
 export async function getContactSubmissions(
   env: AdminEnv,
 ): Promise<ContactSubmission[]> {
-  const data = await adminGraphQL<{metaobjects: {nodes: RawMetaobject[]}}>(
-    env,
-    `query GetContactSubmissions {
-      metaobjects(type: "${TYPE}", first: 100, sortKey: "updated_at", reverse: true) {
-        nodes { ${FIELDS_SELECTION} }
-      }
-    }`,
-  );
-  return data.metaobjects.nodes.map(toSubmission);
+  try {
+    const data = await adminGraphQL<{metaobjects: {nodes: RawMetaobject[]}}>(
+      env,
+      `query GetContactSubmissions {
+        metaobjects(type: "${TYPE}", first: 100, sortKey: "updated_at", reverse: true) {
+          nodes { ${FIELDS_SELECTION} }
+        }
+      }`,
+    );
+    return data.metaobjects.nodes.map(toSubmission);
+  } catch {
+    return [];
+  }
 }
 
 export async function createContactSubmission(
@@ -65,41 +69,45 @@ export async function createContactSubmission(
   }
 
   const handle = `contact-${Date.now()}`;
-  const result = await adminGraphQL<{
-    metaobjectCreate: {
-      metaobject: {id: string} | null;
-      userErrors: Array<{message: string}>;
-    };
-  }>(
-    env,
-    `mutation CreateContactSubmission($metaobject: MetaobjectCreateInput!) {
-      metaobjectCreate(metaobject: $metaobject) {
-        metaobject { id }
-        userErrors { field message }
-      }
-    }`,
-    {
-      metaobject: {
-        type: TYPE,
-        handle,
-        fields: [
-          {key: 'name', value: name},
-          {key: 'email', value: email},
-          {key: 'message', value: message},
-          {key: 'status', value: 'new'},
-          {key: 'submittedAt', value: new Date().toISOString()},
-        ],
+  try {
+    const result = await adminGraphQL<{
+      metaobjectCreate: {
+        metaobject: {id: string} | null;
+        userErrors: Array<{message: string}>;
+      };
+    }>(
+      env,
+      `mutation CreateContactSubmission($metaobject: MetaobjectCreateInput!) {
+        metaobjectCreate(metaobject: $metaobject) {
+          metaobject { id }
+          userErrors { field message }
+        }
+      }`,
+      {
+        metaobject: {
+          type: TYPE,
+          handle,
+          fields: [
+            {key: 'name', value: name},
+            {key: 'email', value: email},
+            {key: 'message', value: message},
+            {key: 'status', value: 'new'},
+            {key: 'submittedAt', value: new Date().toISOString()},
+          ],
+        },
       },
-    },
-  );
+    );
 
-  if (result.metaobjectCreate.userErrors.length) {
-    return {
-      ok: false,
-      error: result.metaobjectCreate.userErrors.map((e) => e.message).join(', '),
-    };
+    if (result.metaobjectCreate.userErrors.length) {
+      return {
+        ok: false,
+        error: result.metaobjectCreate.userErrors.map((e) => e.message).join(', '),
+      };
+    }
+    return {ok: true};
+  } catch {
+    return {ok: false, error: 'Message failed to send. Try again.'};
   }
-  return {ok: true};
 }
 
 export async function updateContactSubmission(
