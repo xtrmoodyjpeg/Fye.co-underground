@@ -5,17 +5,20 @@ import {
   updateClientCamSubmission,
   deleteClientCamSubmission,
 } from '~/lib/clientCam.server';
+import {requireAdminAuth} from '~/lib/adminAuth.server';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | Admin — Client Cam'}];
 };
 
-export async function loader({context}: Route.LoaderArgs) {
+export async function loader({request, context}: Route.LoaderArgs) {
+  requireAdminAuth(request, context.env);
   const submissions = await getClientCamSubmissions(context.env);
   return {submissions};
 }
 
 export async function action({request, context}: Route.ActionArgs) {
+  requireAdminAuth(request, context.env);
   const formData = await request.formData();
   const intent = formData.get('intent');
   const id = String(formData.get('id'));

@@ -7,17 +7,20 @@ import {
   deleteAnimal,
 } from '~/lib/animalContent.server';
 import type {AnimalCategory, AnimalStatus} from '~/data/animalContent';
+import {requireAdminAuth} from '~/lib/adminAuth.server';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.EXOTICS | Admin — Meet The Fam'}];
 };
 
-export async function loader({context}: Route.LoaderArgs) {
+export async function loader({request, context}: Route.LoaderArgs) {
+  requireAdminAuth(request, context.env);
   const animals = await getAnimals(context.storefront);
   return {animals};
 }
 
 export async function action({request, context}: Route.ActionArgs) {
+  requireAdminAuth(request, context.env);
   const formData = await request.formData();
   const intent = formData.get('intent');
 

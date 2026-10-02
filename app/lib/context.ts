@@ -21,6 +21,13 @@ declare global {
   // Augment HydrogenCustomCartFragment with the codegen'd cart fragment type so
   // that context.cart.get() and all cart mutations return the extended cart type.
   interface HydrogenCustomCartFragment extends CartApiQueryFragment {}
+
+  // Custom env vars beyond the Hydrogen skeleton's defaults.
+  interface Env {
+    PRIVATE_ADMIN_API_TOKEN?: string;
+    ADMIN_USER?: string;
+    ADMIN_PASSWORD?: string;
+  }
 }
 
 /**

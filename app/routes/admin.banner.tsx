@@ -1,17 +1,20 @@
 import {Form, useLoaderData, useActionData, data} from 'react-router';
 import type {Route} from './+types/admin.banner';
 import {getBanner, updateBanner} from '~/lib/banner.server';
+import {requireAdminAuth} from '~/lib/adminAuth.server';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.CO | Admin — Sticky Banner'}];
 };
 
-export async function loader({context}: Route.LoaderArgs) {
+export async function loader({request, context}: Route.LoaderArgs) {
+  requireAdminAuth(request, context.env);
   const banner = await getBanner(context.storefront);
   return {banner};
 }
 
 export async function action({request, context}: Route.ActionArgs) {
+  requireAdminAuth(request, context.env);
   const formData = await request.formData();
   const result = await updateBanner(context.env, formData);
   return data(result, {status: result.ok ? 200 : 400});

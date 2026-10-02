@@ -7,17 +7,20 @@ import {
   deleteSpecimen,
 } from '~/lib/specimens.server';
 import type {SpecimenStatus} from '~/data/specimens';
+import {requireAdminAuth} from '~/lib/adminAuth.server';
 
 export const meta: Route.MetaFunction = () => {
   return [{title: 'FYE.EXOTICS | Admin — Live Archive'}];
 };
 
-export async function loader({context}: Route.LoaderArgs) {
+export async function loader({request, context}: Route.LoaderArgs) {
+  requireAdminAuth(request, context.env);
   const specimens = await getSpecimens(context.storefront);
   return {specimens};
 }
 
 export async function action({request, context}: Route.ActionArgs) {
+  requireAdminAuth(request, context.env);
   const formData = await request.formData();
   const intent = formData.get('intent');
 
