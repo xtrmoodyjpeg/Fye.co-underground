@@ -1,60 +1,10 @@
-// Reads/writes Contact form submissions as Shopify Metaobjects
-// (type "contact_submission") via the Admin API.
+// Writes Contact form submissions as Shopify Metaobjects (type
+// "contact_submission") via the Admin API. Reviewing/deleting submissions
+// happens natively in Shopify Admin > Content > Metaobjects > Contact
+// Submission -- this file only handles the public submit form.
 import {adminGraphQL, type AdminEnv} from './shopifyAdmin.server';
 
 const TYPE = 'contact_submission';
-
-export interface ContactSubmission {
-  id: string;
-  name: string;
-  email: string;
-  message: string;
-  status: 'new' | 'read';
-  submittedAt: string;
-}
-
-interface RawField {
-  key: string;
-  value: string | null;
-}
-interface RawMetaobject {
-  id: string;
-  handle: string;
-  fields: RawField[];
-}
-
-const FIELDS_SELECTION = `id handle fields { key value }`;
-
-function toSubmission(raw: RawMetaobject): ContactSubmission {
-  const map: Record<string, string> = {};
-  for (const f of raw.fields) map[f.key] = f.value ?? '';
-  return {
-    id: raw.id,
-    name: map.name || '',
-    email: map.email || '',
-    message: map.message || '',
-    status: map.status === 'read' ? 'read' : 'new',
-    submittedAt: map.submittedAt || '',
-  };
-}
-
-export async function getContactSubmissions(
-  env: AdminEnv,
-): Promise<ContactSubmission[]> {
-  try {
-    const data = await adminGraphQL<{metaobjects: {nodes: RawMetaobject[]}}>(
-      env,
-      `query GetContactSubmissions {
-        metaobjects(type: "${TYPE}", first: 100, sortKey: "updated_at", reverse: true) {
-          nodes { ${FIELDS_SELECTION} }
-        }
-      }`,
-    );
-    return data.metaobjects.nodes.map(toSubmission);
-  } catch {
-    return [];
-  }
-}
 
 export async function createContactSubmission(
   env: AdminEnv,
@@ -108,36 +58,4 @@ export async function createContactSubmission(
   } catch {
     return {ok: false, error: 'Message failed to send. Try again.'};
   }
-}
-
-export async function updateContactSubmission(
-  env: AdminEnv,
-  id: string,
-  status: 'new' | 'read',
-): Promise<{ok: boolean}> {
-  await adminGraphQL(
-    env,
-    `mutation UpdateContactSubmission($id: ID!, $metaobject: MetaobjectUpdateInput!) {
-      metaobjectUpdate(id: $id, metaobject: $metaobject) {
-        metaobject { id }
-        userErrors { message }
-      }
-    }`,
-    {id, metaobject: {fields: [{key: 'status', value: status}]}},
-  );
-  return {ok: true};
-}
-
-export async function deleteContactSubmission(
-  env: AdminEnv,
-  id: string,
-): Promise<{ok: boolean}> {
-  await adminGraphQL(
-    env,
-    `mutation DeleteContactSubmission($id: ID!) {
-      metaobjectDelete(id: $id) { deletedId userErrors { message } }
-    }`,
-    {id},
-  );
-  return {ok: true};
 }

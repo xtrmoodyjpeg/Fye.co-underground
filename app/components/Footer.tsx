@@ -101,20 +101,6 @@ export function Footer({
             }
           </Await>
         </Suspense>
-
-        <div className="border-t border-paper/10 py-4 font-mono text-[10px] uppercase tracking-widest text-paper/50">
-          <Link to="/admin/contact" className="hover:text-paper/60">
-            Contact Admin
-          </Link>
-          {' · '}
-          <Link to="/admin/client-cam" className="hover:text-paper/60">
-            Client Cam Admin
-          </Link>
-          {' · '}
-          <Link to="/admin/banner" className="hover:text-paper/60">
-            Banner Admin
-          </Link>
-        </div>
       </div>
     </footer>
   );

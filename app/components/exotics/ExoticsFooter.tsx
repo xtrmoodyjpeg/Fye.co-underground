@@ -53,12 +53,7 @@ export function ExoticsFooter() {
         </p>
 
         <div className="mt-10 flex flex-col gap-2 font-mono text-[10px] uppercase tracking-widest text-fog sm:flex-row sm:items-center sm:justify-between">
-          <span>
-            © 2026 FYE.CO / FYE.EXOTICS ·{' '}
-            <Link to="/admin/exotics" className="hover:text-acid">
-              Archive Admin
-            </Link>
-          </span>
+          <span>© 2026 FYE.CO / FYE.EXOTICS</span>
           <span className="max-w-md normal-case tracking-normal sm:text-right">
             Educational archive and future availability platform. Species
             information should not replace professional veterinary guidance.

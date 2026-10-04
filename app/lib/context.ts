@@ -25,8 +25,6 @@ declare global {
   // Custom env vars beyond the Hydrogen skeleton's defaults.
   interface Env {
     PRIVATE_ADMIN_API_TOKEN?: string;
-    ADMIN_USER?: string;
-    ADMIN_PASSWORD?: string;
   }
 }
 

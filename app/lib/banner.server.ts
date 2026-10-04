@@ -1,7 +1,7 @@
-// Reads/writes the sitewide sticky banner's content as a single Shopify
-// Metaobject (type "banner_config", handle "main") via the Admin API.
-import {adminGraphQL, type AdminEnv} from './shopifyAdmin.server';
-
+// Reads the sitewide sticky banner's content as a single Shopify
+// Metaobject (type "banner_config", handle "main") via the Storefront API.
+// Editing the banner happens natively in Shopify Admin > Content >
+// Metaobjects > Banner Config -- this file is read-only.
 const TYPE = 'banner_config';
 const HANDLE = 'main';
 
@@ -43,10 +43,6 @@ interface StorefrontClient {
   query<T>(query: string, options?: {variables?: Record<string, unknown>}): Promise<T>;
 }
 
-// Reads go through the Storefront API: the banner_config metaobject
-// definition has Storefront API access enabled, so the sticky banner
-// keeps working even when PRIVATE_ADMIN_API_TOKEN is unset or invalid.
-// Writes (updateBanner below) still require the Admin API.
 export async function getBanner(storefront: StorefrontClient): Promise<BannerConfig> {
   try {
     const data = await storefront.query<{
@@ -61,39 +57,4 @@ export async function getBanner(storefront: StorefrontClient): Promise<BannerCon
   } catch {
     return FALLBACK_BANNER;
   }
-}
-
-export async function updateBanner(
-  env: AdminEnv,
-  formData: FormData,
-): Promise<{ok: boolean; banner?: BannerConfig}> {
-  const config: BannerConfig = {
-    enabled: formData.get('enabled') === 'on',
-    message: String(formData.get('message') || '').trim(),
-    ctaLabel: String(formData.get('ctaLabel') || '').trim(),
-    ctaHref: String(formData.get('ctaHref') || '').trim(),
-  };
-
-  await adminGraphQL(
-    env,
-    `mutation UpsertBanner($handle: MetaobjectHandleInput!, $metaobject: MetaobjectUpsertInput!) {
-      metaobjectUpsert(handle: $handle, metaobject: $metaobject) {
-        metaobject { id }
-        userErrors { message }
-      }
-    }`,
-    {
-      handle: {type: TYPE, handle: HANDLE},
-      metaobject: {
-        fields: [
-          {key: 'enabled', value: String(config.enabled)},
-          {key: 'message', value: config.message},
-          {key: 'ctaLabel', value: config.ctaLabel},
-          {key: 'ctaHref', value: config.ctaHref},
-        ],
-      },
-    },
-  );
-
-  return {ok: true, banner: config};
 }

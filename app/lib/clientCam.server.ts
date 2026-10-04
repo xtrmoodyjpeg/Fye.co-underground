@@ -1,5 +1,9 @@
-// Reads/writes Client Cam submissions as Shopify Metaobjects
-// (type "client_cam_submission") via the Admin API.
+// Reads/writes Client Cam submissions as Shopify Metaobjects (type
+// "client_cam_submission") via the Admin API (this metaobject has no
+// Storefront API access, so even the public "approved photos" gallery on
+// the homepage reads through here). Approving/rejecting/deleting
+// submissions happens natively in Shopify Admin > Content > Metaobjects >
+// Client Cam Submission.
 import {
   adminGraphQL,
   uploadFileToShopify,
@@ -143,37 +147,5 @@ export async function createClientCamSubmission(
       error: result.metaobjectCreate.userErrors.map((e) => e.message).join(', '),
     };
   }
-  return {ok: true};
-}
-
-export async function updateClientCamSubmission(
-  env: AdminEnv,
-  id: string,
-  status: ClientCamStatus,
-): Promise<{ok: boolean}> {
-  await adminGraphQL(
-    env,
-    `mutation UpdateClientCamSubmission($id: ID!, $metaobject: MetaobjectUpdateInput!) {
-      metaobjectUpdate(id: $id, metaobject: $metaobject) {
-        metaobject { id }
-        userErrors { message }
-      }
-    }`,
-    {id, metaobject: {fields: [{key: 'status', value: status}]}},
-  );
-  return {ok: true};
-}
-
-export async function deleteClientCamSubmission(
-  env: AdminEnv,
-  id: string,
-): Promise<{ok: boolean}> {
-  await adminGraphQL(
-    env,
-    `mutation DeleteClientCamSubmission($id: ID!) {
-      metaobjectDelete(id: $id) { deletedId userErrors { message } }
-    }`,
-    {id},
-  );
   return {ok: true};
 }
